@@ -1,15 +1,27 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}S'enregistrer{% endblock %}</h1>
+  {% block title %}S'enregistrer{% endblock %}
 {% endblock %}
 
 {% block content %}
-  <form method="post">
-    <label for="username">Username</label>
-    <input name="username" id="username" required>
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password" required>
-    <input type="submit" value="Register">
-  </form>
+  <div class="register-bcg">
+    <form method="post"> 
+      <label for="nom" class="register-form">Nom</label>
+      <input type="nom" name="nom" id="nom" required>
+      <br><label for="prenom" class="register-form">Prénom</label>
+      <input type="prenom" name="prenom" id="prenom" required>
+      <br><label for="username">E-mail</label>
+      <input name="username" id="username" required>
+      <br><label for="password">Mot-de-passe</label>
+      <input type="password" name="password" id="password" required>
+      <br><label for="coach">coach</label>
+      <input type="checkbox" name="coach" id="coach" required>
+      <br><label for="patineur">patineur</label>
+      <br><input type="checkbox" name="patineur" id="patineur" required>
+      <input type="submit" value="Register">
+      <input class="c-checkbox" type="checkbox" id="checkbox">
+      <br> <li><a href="{{ url_for('auth.login') }}">Log In</a>
+    </form>
+  </div>
 {% endblock %}
