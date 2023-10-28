@@ -1,17 +1,35 @@
 {% extends 'base.html' %}
 
 {% block header %}
-{% block title %}Se connecter {% endblock %}
+{% block title %}{% endblock %}
 {% endblock %}
 
 {% block content %}
 <div class="login-bcg">
   <form method="post">
-    <label for="username">Username</label>
-    <input name="username" id="username" required>
-    <br><label for="password">Password</label>
-    <input type="password" name="password" id="password" required>
-    <input type="submit" value="Log In">
+
+
+
+    <div class="container">
+          
+      <div class="login">
+          <h3 class="title">log in</h3>
+          <div class="text-input">
+              <input type="text" placeholder="Username" name="username" id="username" required>
+          </div>
+          <div class="text-input">
+              
+              <input type="password" placeholder="Password" name="password" id="password" required>
+          </div>
+          <input type="submit" class="login-btn" value="GO!">
+          <a href="#" class="forgot">mot de passe oublié?<span style="color: #F9B0A7;"> clique ici!</span></a>
+          <div class="create">
+              <a href="{{ url_for('auth.register') }}">première visite? <span style="color: #3493A9;">inscris toi !</span> </a>
+              
+          </div>
+      </div>
+  </div>
+
   </form>
 </div>
 {% endblock %}

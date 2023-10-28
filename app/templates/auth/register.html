@@ -1,27 +1,36 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  {% block title %}S'enregistrer{% endblock %}
+  {% block title %}{% endblock %}
 {% endblock %}
 
 {% block content %}
-  <div class="register-bcg">
+  
     <form method="post"> 
-      <label for="nom" class="register-form">Nom</label>
-      <input type="nom" name="nom" id="nom" required>
-      <br><label for="prenom" class="register-form">Prénom</label>
-      <input type="prenom" name="prenom" id="prenom" required>
-      <br><label for="username">E-mail</label>
-      <input name="username" id="username" required>
-      <br><label for="password">Mot-de-passe</label>
-      <input type="password" name="password" id="password" required>
-      <br><label for="coach">coach</label>
-      <input type="checkbox" name="coach" id="coach" required>
-      <br><label for="patineur">patineur</label>
-      <br><input type="checkbox" name="patineur" id="patineur" required>
-      <input type="submit" value="Register">
-      <input class="c-checkbox" type="checkbox" id="checkbox">
-      <br> <li><a href="{{ url_for('auth.login') }}">Log In</a>
+
+
+
+
+      <div class="container">
+          
+          <div class="login">
+              <h3 class="title">inscription</h3>
+              <div class="text-input">
+                  <input type="text" placeholder="username" name="username" id="username" required>
+              </div>
+              <div class="text-input">
+                  <input type="password" placeholder="password" name="password" id="password" required>
+              </div>
+              <button class="login-btn">GO!</button>
+              <div class="create">
+                  <a href="{{ url_for('auth.login') }}">déjà inscris? <span style="color: #C4E6E5;">connecte toi !</span></a>
+                 
+              </div>
+          </div>
+      </div>
+
+      
+      
     </form>
-  </div>
+  
 {% endblock %}

@@ -16,6 +16,7 @@ def register():
         # On récupère les champs 'username' et 'password' de la requête HTTP
         username = request.form['username']
         password = request.form['password']
+        
 
         # On récupère la base de donnée
         db = get_db()
@@ -38,7 +39,7 @@ def register():
             return redirect(url_for("auth.login"))
          
         else:
-            error = "Username or password invalid"
+            error = "Username or password invalid or something is missing"
             flash(error)
             return redirect(url_for("auth.login"))
     else:

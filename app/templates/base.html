@@ -2,6 +2,7 @@
 <head>
     <title>{% block title %}{% endblock %} - Template de base Flask</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     
 </head>
 
@@ -13,8 +14,7 @@
             <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
             <li><a href="{{url_for('user.show_profile')}}">Show profile</a></li>
         {% else %}
-            <li><a href="{{ url_for('auth.register') }}">Register</a>
-            <li><a href="{{ url_for('auth.login') }}">Log In</a>
+        <li><a href="{{ url_for('auth.login') }}">Log Out</a>
         {% endif %}
         </ul>
     </nav>
@@ -33,3 +33,5 @@
 
     <script type="text/javascript" src="{{url_for('static', filename='js/script.js')}}"></script>
 </body>
+
+</html>
