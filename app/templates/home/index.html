@@ -1,9 +1,30 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Bienvenue{% endblock %}</h1>
+<div class="padding_date" >
+  <script >
+
+  var current_date = new Date();
+  var day_count = current_date.getDay();
+  var day = current_date.getDate();
+  var month = current_date.getMonth();
+
+  const day_week = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
+  const month_year = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout","Septembre", "Octobre", "Novembre", "Décembre"];
+
+  var date = day_week[day_count] + " " + day + " " + month_year[month] ;
+  document.write(date);
+  </script>
+</div>
 {% endblock %}
 
 {% block content%}
-    <p>Ceci est un paragraphe de bienvenue.</p>
+
+  <div class="container_index">
+    <div class="container_entrainement_index">
+
+    </div>
+  
+  </div>
+
 {% endblock %}

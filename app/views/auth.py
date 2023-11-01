@@ -16,7 +16,6 @@ def register():
         # On récupère les champs 'username' et 'password' de la requête HTTP
         username = request.form['username']
         password = request.form['password']
-        
 
         # On récupère la base de donnée
         db = get_db()
@@ -39,7 +38,7 @@ def register():
             return redirect(url_for("auth.login"))
          
         else:
-            error = "Username or password invalid or something is missing"
+            error = "Username or password invalid"
             flash(error)
             return redirect(url_for("auth.login"))
     else:
@@ -75,7 +74,7 @@ def login():
         # De cette manière, à chaque requête de l'utilisateur, on pourra récupérer l'id dans le cookie session
         if error is None:
             session.clear()
-            session['user_id'] = user['id']
+            session['user_id'] = user['id_users']
             # On redirige l'utilisateur vers la page principale une fois qu'il s'est connecté
             return redirect("/")
         
@@ -114,7 +113,7 @@ def load_logged_in_user():
     else:
          # On récupère la base de données et on récupère l'utilisateur correspondant à l'id stocké dans le cookie session
         db = get_db()
-        g.user = db.execute('SELECT * FROM users WHERE id = ?', (user_id,)).fetchone()
+        g.user = db.execute('SELECT * FROM users WHERE id_users = ?', (user_id,)).fetchone()
 
 
 

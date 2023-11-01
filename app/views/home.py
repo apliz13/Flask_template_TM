@@ -15,3 +15,32 @@ def landing_page():
 @home_bp.route('/<path:text>', methods=['GET', 'POST'])
 def not_found_error(text):
     return render_template('home/404.html'), 404
+
+#Test pour rank
+@home_bp.route('/testrank', methods=['GET', 'POST'])
+def testrank():
+    if request.method=='GET':
+        return render_template('temporaire/testrank.html')
+    
+    elif request.method=='POST':
+        # Récupération des données du formulaire
+        userid = request.form['userid']
+        date = request.form['date']
+        satisfaction = request.form['satisfaction']
+
+        #On récupère la base de données
+        db = get_db()
+
+        #Si tous les éléments ont une valeur on essaye de les ajouter à la base de données
+        if userid and date and satisfaction:
+            #On crontrole que la peronne n'a pas déjà répondu au questionnaire aujourd'hui
+            today_reaction = db.execute(
+                'SELECT * FROM rank WHERE username=? AND date=?',
+                (userid, date)
+            ).fetchone()
+            if today_reaction is None:
+                db.execute(
+                    'INSERT INTO rank (username, date, satisfaction) VALUES (?, ?, ?)',
+                    (userid, date, satisfaction)
+                )
+                db.commit()

@@ -2,22 +2,39 @@
 <head>
     <title>{% block title %}{% endblock %} - Template de base Flask</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="img" href="{{ url_for('static', filename='img/user.png') }}">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     
 </head>
 
 <body>
-    <nav>
-        <ul>
-        {% if g.user %}
-            <li><span>{{ g.user['username'] }}</span>
-            <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
-            <li><a href="{{url_for('user.show_profile')}}">Show profile</a></li>
-        {% else %}
-        <li><a href="{{ url_for('auth.login') }}">Log Out</a>
-        {% endif %}
-        </ul>
-    </nav>
+        <nav>
+            <ul>
+            {% if g.user %}
+            <div class="side-nav">
+                <div class="user">
+                    <!--<img src="app/static/img/user.png" class="user_img"> -->
+                    <div>
+                        <li><a href="{{url_for('user.show_profile')}}"><h2>{{ g.user['username'] }}</h2></a></li>
+                    </div>
+                </div>
+                <div>
+                    <ul>
+                        <li><a href="{{url_for('home.landing_page')}}"><p class="side-nav-text">Profile</p></li>
+                        <li><a href="{{url_for('user.show_profile')}}"><p class="side-nav-text">Profile</p></a></li>
+                        <li><a href="{{url_for('user.show_profile')}}"><p class="side-nav-text">Profile</p></a></li>   
+                    </ul>
+                    <ul>
+                        <li><a href="{{ url_for('auth.logout') }}"><p>Log Out</p></a>
+                    </ul>
+                </div>
+            </div>
+            {% else %}
+            <li><a href="{{ url_for('auth.login') }}">Log In</a>
+            {% endif %}
+            </ul>
+        </nav>
+    
 
     <section class="content">
         <header>

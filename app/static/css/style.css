@@ -1,4 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Poppins:wght@400;600&display=swap');
+
+
 
 
 *, html, body {
@@ -7,7 +10,7 @@
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Inter', sans-serif;    
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -15,7 +18,9 @@ body {
     background-color: #d7f3f2;
 }
 
-.container {
+/*auth*/
+
+.container_auth {
     width: 50vw;
     height: 60vh;
     display: grid;
@@ -111,7 +116,7 @@ a.forgot {
 }
 
 @media (min-width: 768px) {
-    .container {
+    .container_auth {
         grid-template-columns: 50% 50%;
         grid-template-areas: "design login";
     }
@@ -119,4 +124,86 @@ a.forgot {
     .design {
         display: block;
     }
+}
+
+ul,li{
+    list-style: none;
+    padding: 20px;
+
+}
+
+/*index*/
+
+.container_index {
+    width: 80vw;
+    height: 80vh;
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+    grid-template-rows: 20% 60% 20%;
+    box-shadow: 0 0 17px 10px rgb(0 0 0 / 5%);
+    border-radius: 20px;
+    background: white;
+    overflow: hidden;
+
+}
+
+.padding_date {
+    padding-left: 20px;
+}
+
+.container_entrainement_index{
+    width: 30vw;
+    height: 60vh;
+    display: grid;
+    grid-column-start: 2;
+    grid-column-end: span 3;
+    box-shadow: 0 0 17px 10px rgb(0 0 0 / 5%);
+    border-radius: 20px;
+    background: rgb(255, 169, 235);
+    overflow: hidden;
+}
+
+/*nav*/
+.side-nav{
+    width:15vh;
+    height: 100%;
+    position: fixed;
+    top:0;
+    left:0;
+    padding: 30px 15px;
+
+}
+
+.user{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 12px;
+    padding: 10px;
+    border-radius: 8px;
+    margin-left: auto;
+    margin-right:auto;
+
+}
+
+.user h2{
+    font-size: 15px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.user-img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: auto;
+}
+
+/*profil*/
+
+.titre_profil{
+    font-size: 40px;
+    font-weight: 800;
+    margin:  30px; 
 }
