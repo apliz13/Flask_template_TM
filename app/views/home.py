@@ -25,9 +25,10 @@ def testrank():
     
     elif request.method=='POST':
         # Récupération des données du formulaire
-        userid = request.form['userid']
-        date = request.form['date']
-        satisfaction = request.form['satisfaction']
+        data=request.get_json()
+        userid = session['user_id']
+        date = data['date']
+        satisfaction = data['satisfaction']
 
         #On récupère la base de données
         db = get_db()
@@ -36,19 +37,20 @@ def testrank():
         if userid and date and satisfaction:
             #On crontrole que la peronne n'a pas déjà répondu au questionnaire aujourd'hui
             today_reaction = db.execute(
-                'SELECT * FROM satisfaction WHERE id_users=? AND date=?',
+                'SELECT * FROM satisfactionTABLE WHERE id_users=? AND date=?',
                 (userid, date)
             ).fetchone()
             if today_reaction is None:
                 db.execute(
-                    'INSERT INTO satisfaction (username, date, satisfaction) VALUES (?, ?, ?)',
+                    'INSERT INTO satisfactionTABLE (id_users, date, satisfaction) VALUES (?, ?, ?)',
                     (userid, date, satisfaction)
                 )
                 
             else:
                 db.execute(
-                    'UPDATE satisfaction SET (satisfaction) WHERE id_users=? AND date=? VALUES (?, ?, ?)',
+                    'UPDATE satisfactionTABLE SET satisfaction=? WHERE id_users=? AND date=? VALUES (?, ?, ?)',
                     (satisfaction, userid, date)
                 )
             db.commit()
+    return session['user_id']
 

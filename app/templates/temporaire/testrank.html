@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
-{% block header %}
-<div>
+{% block content %}
+<div style="display: flex;flex-direction: row;align-items: center;justify-content: center;">
     <i class="Object" id="1">&#128128;</i>
     <i class="Object" id="2">&#128577;</i>
     <i class="Object" id="3">&#128528;</i>
@@ -20,11 +20,11 @@
             try{
             fetch("", {
                 method: 'POST',
-                body:{
-                    'userid':'lizzy',
-                    'date': new Date().getDate() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getFullYear(),
-                    'satisfaction': Number(this.id.value)
-                }
+                headers:{'Content-Type': 'application/json'},
+                body:JSON.stringify({
+                    'date':new Date().getDate() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getFullYear(),
+                    'satisfaction': this.id
+                })
             })}catch(error){console.log(error)}
         };
         for (i = 0; i < objects.length; i++) {

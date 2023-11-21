@@ -167,9 +167,30 @@ ul,li{
     
 }
 
+@media screen and (max-width: 900px) {
+    .container_index {
+        margin-left: 0vh;
+        margin-top: 3vh;
+        width: 75vw;
+        height: 80vh;
+        box-shadow: 0 0 17px 10px rgb(0 0 0 / 5%);
+        border-radius: 20px;
+        background: white;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 10px;
+        
+    }
+    }
+    
+
+
 .padding_date{
-    margin-left: 10vh;
-    margin-top: 3vh;
+    font-size: larger;
+    margin-left: 35vh;
+    margin-top: 2vh;
 
 }
 
@@ -182,7 +203,6 @@ ul,li{
     top:0;
     left:0;
     padding: 30px 15px;
-    float:left;
 
 }
 
@@ -203,7 +223,7 @@ ul,li{
     border-radius: 8px;
     margin-left: auto;
     margin-right:auto;
-    background-color: rgb(255, 255, 255, 0.7);
+    background-color: rgba(215, 243, 242, 0.205);
     box-shadow: 0 0 17px 10px rgb(0 0 0 / 5%);
 
 }
