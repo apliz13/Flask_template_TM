@@ -6,7 +6,7 @@
 
 {% block content %}
 <div class="login-bcg">
-  <form method="post">
+  <form id="log-form" method="post">
 
 
 
@@ -23,9 +23,8 @@
           </div>
           <input type="submit" class="login-btn" value="GO!">
           <a href="#" class="forgot">mot de passe oublié?<span style="color: #F9B0A7;"> clique ici!</span></a>
-          <div class="create">
-              <a href="{{ url_for('auth.register') }}">première visite? <span style="color: #3493A9;">inscris toi !</span> </a>
-              
+          <a href="{{ url_for('auth.register') }}" class="forgot">première visite? <span style="color: #3493A9;">inscris toi !</span> </a>
+          <div class="create">    
           </div>
       </div>
   </div>

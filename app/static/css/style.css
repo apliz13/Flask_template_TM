@@ -4,7 +4,7 @@
 
 
 
-*, html, body {
+*{
     margin: 0;
     padding: 0;
 }
@@ -12,7 +12,6 @@
 body {
     font-family: 'Inter', sans-serif;    
     height: 100vh;
-    display: flex;
     justify-content: center;
     align-items: center;
     background-color: #d7f3f2;
@@ -20,7 +19,19 @@ body {
 
 /*auth*/
 
+.auth {
+    font-family: 'Inter', sans-serif;    
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #d7f3f2;
+ 
+}
+
 .container_auth {
+    align-items: center;
+    justify-content: center;
     width: 50vw;
     height: 60vh;
     display: grid;
@@ -30,6 +41,12 @@ body {
     border-radius: 20px;
     background: white;
     overflow: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    
 }
 
 .design {
@@ -135,55 +152,59 @@ ul,li{
 /*index*/
 
 .container_index {
-    width: 80vw;
+    margin-left: 10vh;
+    margin-top: 3vh;
+    width: 75vw;
     height: 80vh;
-    display: grid;
-    grid-template-columns: 20% 60% 20%;
-    grid-template-rows: 20% 60% 20%;
     box-shadow: 0 0 17px 10px rgb(0 0 0 / 5%);
     border-radius: 20px;
     background: white;
-    overflow: hidden;
-
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    
 }
 
-.padding_date {
-    padding-left: 20px;
-}
+.padding_date{
+    margin-left: 10vh;
+    margin-top: 3vh;
 
-.container_entrainement_index{
-    width: 30vw;
-    height: 60vh;
-    display: grid;
-    grid-column-start: 2;
-    grid-column-end: span 3;
-    box-shadow: 0 0 17px 10px rgb(0 0 0 / 5%);
-    border-radius: 20px;
-    background: rgb(255, 169, 235);
-    overflow: hidden;
 }
 
 /*nav*/
-.side-nav{
+#sidenav{
+    order:1;
     width:15vh;
     height: 100%;
     position: fixed;
     top:0;
     left:0;
     padding: 30px 15px;
+    float:left;
 
 }
 
-.user{
+@media screen and (max-width: 900px) {
+    #sidenav {
+      display: none;
+    }
+    }   
+
+#user{
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
     font-size: 12px;
-    padding: 10px;
+    padding: 6px;
+    padding-right: 60px;
     border-radius: 8px;
     margin-left: auto;
     margin-right:auto;
+    background-color: rgb(255, 255, 255, 0.7);
+    box-shadow: 0 0 17px 10px rgb(0 0 0 / 5%);
 
 }
 
@@ -193,12 +214,14 @@ ul,li{
     white-space: nowrap;
 }
 
-.user-img{
+
+.user_img{
     width: 40px;
     height: 40px;
     border-radius: 50%;
     margin: auto;
 }
+
 
 /*profil*/
 
@@ -207,3 +230,4 @@ ul,li{
     font-weight: 800;
     margin:  30px; 
 }
+

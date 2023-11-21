@@ -16,14 +16,16 @@
             }
             this.classList.add("Active");
             /*A terminer, requete pour envoyer le resultat du sondage/*/
-            fetch(window.location.href, {
+            /*g.user*/
+            try{
+            fetch("", {
                 method: 'POST',
                 body:{
-                    'userid':'{{userid}}',
+                    'userid':'lizzy',
                     'date': new Date().getDate() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getFullYear(),
-                    'satisfaction': this.id.value
+                    'satisfaction': Number(this.id.value)
                 }
-            }) 
+            })}catch(error){console.log(error)}
         };
         for (i = 0; i < objects.length; i++) {
             objects[i].addEventListener('click', myfunction, false);

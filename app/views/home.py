@@ -1,5 +1,5 @@
 from flask import (Blueprint, flash, g, redirect, render_template, request, session, url_for)
-
+from app.db.db import get_db
 # Routes /...
 home_bp = Blueprint('home', __name__)
 
@@ -10,6 +10,7 @@ home_bp = Blueprint('home', __name__)
 def landing_page():
     # Affichage de la page principale de l'application
     return render_template('home/index.html')
+
 
 # Gestionnaire d'erreur 404 pour toutes les routes inconnues
 @home_bp.route('/<path:text>', methods=['GET', 'POST'])
@@ -35,12 +36,19 @@ def testrank():
         if userid and date and satisfaction:
             #On crontrole que la peronne n'a pas déjà répondu au questionnaire aujourd'hui
             today_reaction = db.execute(
-                'SELECT * FROM rank WHERE username=? AND date=?',
+                'SELECT * FROM satisfaction WHERE id_users=? AND date=?',
                 (userid, date)
             ).fetchone()
             if today_reaction is None:
                 db.execute(
-                    'INSERT INTO rank (username, date, satisfaction) VALUES (?, ?, ?)',
+                    'INSERT INTO satisfaction (username, date, satisfaction) VALUES (?, ?, ?)',
                     (userid, date, satisfaction)
                 )
-                db.commit()
+                
+            else:
+                db.execute(
+                    'UPDATE satisfaction SET (satisfaction) WHERE id_users=? AND date=? VALUES (?, ?, ?)',
+                    (satisfaction, userid, date)
+                )
+            db.commit()
+

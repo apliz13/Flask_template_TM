@@ -1,10 +1,13 @@
 from flask import (Blueprint, flash, g, redirect, render_template, request, session, url_for)
 from werkzeug.security import check_password_hash, generate_password_hash
 from app.db.db import get_db
+from flask_mail import Mail, Message
 import os
 
 # Création d'un blueprint contenant les routes ayant le préfixe /auth/...
 auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
+
+
 
 # Route /auth/register
 @auth_bp.route('/register', methods=('GET', 'POST'))
@@ -16,15 +19,16 @@ def register():
         # On récupère les champs 'username' et 'password' de la requête HTTP
         username = request.form['username']
         password = request.form['password']
-
+        first_name = request.form['first_name']
+        last_name = request.form['last_name']
         # On récupère la base de donnée
         db = get_db()
 
         # Si le nom d'utilisateur et le mot de passe ont bien une valeur
         # on essaie d'insérer l'utilisateur dans la base de données
-        if username and password:
+        if username and password and first_name and last_name:
             try:
-                db.execute("INSERT INTO users (username, password) VALUES (?, ?)",(username, generate_password_hash(password)))
+                db.execute("INSERT INTO users (username, password, first_name, last_name) VALUES (?, ?, ?, ?)",(username, generate_password_hash(password), first_name, last_name))
                 # db.commit() permet de valider une modification de la base de données
                 db.commit()
             except db.IntegrityError:
@@ -92,7 +96,7 @@ def logout():
     session.clear()
 
     # On redirige l'utilisateur vers la page principale une fois qu'il s'est déconnecté
-    return redirect("/")
+    return redirect(url_for("auth.login"))
 
 
 # Fonction automatiquement appelée à chaque requête (avant d'entrer dans la route) sur une route appartenant au blueprint 'auth_bp'
@@ -116,4 +120,20 @@ def load_logged_in_user():
         g.user = db.execute('SELECT * FROM users WHERE id_users = ?', (user_id,)).fetchone()
 
 
+@auth_bp.route('/forgotten', methods=['GET', 'POST'])
+def forgotten_password():
+    
+    if request.method == 'POST':
 
+        msg=Message('Hello', sender='', recipients=[''])
+        msg.body = "Hello Flask message sent from Flask-Mail"
+        mail.send(msg)
+
+        db = get_db()
+        db.execute(
+            'UPDATE user SET status=? WHERE username=?',
+            ('', '{{g.user.username}}')
+        )
+
+
+    return 'Sent'
