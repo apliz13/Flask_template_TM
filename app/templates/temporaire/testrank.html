@@ -8,6 +8,25 @@
     <i class="Object" id="4">&#128578;</i>
     <i class="Object" id="5">&#128513;</i> 
     <script>
+/* onload="fetchHappiness()" */
+        /*function fetchHappiness(){
+            fetch("",
+            {
+                method: 'GET',
+                contentType: 'application/json',
+                body:JSON.stringify({
+                    'request':'satisfaction',
+                    'date':new Date().getDate() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getFullYear()
+                })
+                
+            }).then(response => {var happiness = response.json()}).catch(error => console.log(error));
+            if(happiness['satisfaction'] != 'None'){
+            var object = document.getElementById(happiness['satisfaction']);
+            object.classList.add("Active");    
+            }
+        }
+        */
+
         var objects = document.getElementsByClassName("Object");
         var i;
         var myfunction = function() {

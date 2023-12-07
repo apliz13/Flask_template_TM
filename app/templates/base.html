@@ -8,7 +8,6 @@
 
 <body>
     {% if g.user %}
-
         <nav>
             <ul>
             
@@ -22,7 +21,7 @@
                 <div>
                     <ul>
                         <li><a href="{{url_for('home.landing_page')}}"><p class="side-nav-text">Profile</p></li>
-                        <li><a href="{{url_for('user.show_profile')}}"><p class="side-nav-text">Profile</p></a></li>
+                        <li><a href="{{url_for('home.prof')}}"><p class="side-nav-text">Profile</p></a></li>
                         <li><a href="{{url_for('user.show_profile')}}"><p class="side-nav-text">Profile</p></a></li>   
                     </ul>
                     <ul>

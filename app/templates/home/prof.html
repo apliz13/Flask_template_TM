@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<body class="body_prof"> <div class="padding_date" >
+  <script >
+
+  var current_date = new Date();
+  var day_count = current_date.getDay();
+  var day = current_date.getDate();
+  var month = current_date.getMonth();
+
+  const day_week = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
+  const month_year = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout","Septembre", "Octobre", "Novembre", "Décembre"];
+
+  var date = day_week[day_count] + " " + day + " " + month_year[month] ;
+  document.write(date);
+  </script>
+</div>
+
+
+<div class="container_index">
+  <div>
+    <h1>Hi {{g.user.first_name}}!</h1>
+    <h2>Voici <span style="color: #ff72a8;">l'entrainement d'aujourd'hui :</span></h2>
+  </div>
+
+</div>
+</body>
+{% endblock %}

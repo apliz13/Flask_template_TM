@@ -21,6 +21,7 @@ def register():
         password = request.form['password']
         first_name = request.form['first_name']
         last_name = request.form['last_name']
+        
         # On récupère la base de donnée
         db = get_db()
 
@@ -58,6 +59,7 @@ def login():
         # On récupère les champs 'username' et 'password' de la requête HTTP
         username = request.form['username']
         password = request.form['password']
+        
 
         # On récupère la base de données
         db = get_db()

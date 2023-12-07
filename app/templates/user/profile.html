@@ -1,30 +1,15 @@
 {% extends 'base.html' %}
 
-{% block header %}
-  <h3>{% block title %}
-    <div class="padding_date" >
-      <script >
-    
-      var current_date = new Date();
-      var day_count = current_date.getDay();
-      var day = current_date.getDate();
-      var month = current_date.getMonth();
-    
-      const day_week = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
-      const month_year = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout","Septembre", "Octobre", "Novembre", "Décembre"];
-    
-      var date = day_week[day_count] + " " + day + " " + month_year[month] ;
-      document.write(date);
-      </script>
-  </div>{% endblock %}</h3>
-{% endblock %}
 
 {% block content %}
-      <div class="container_index">
+    <body class="body_profil">
+      <div class="container_index_profil">
         <h2 class="titre_profil">Mon profile</h2>
         <ul>
           <li>Username: {{g.user.username}}</li>
-          <li>Password: {{g.user.password}}</li>
+          <li>First name: {{g.user.first_name}}</li>
+          <li>Last name: {{g.user.last_name}}</li>
         </ul>
       </div>
+    </body>
 {% endblock %}

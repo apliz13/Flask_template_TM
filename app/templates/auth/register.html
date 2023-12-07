@@ -27,6 +27,12 @@
             <div class="text-input">
                 <input type="text" placeholder="last_name" name="last_name" id="last_name" required>
                  </div>
+            
+                 <div class="checkbox">
+                  
+                 <input style="cursor: pointer; margin: 5px;" type="checkbox" placeholder="prof" name="prof" id="type_user" required>
+                 <label for="type_user">je suis <span style="color:#F37891"> coach </span>!</label> </div>
+                  
               <button class="login-btn">GO!</button>
               <div class="create">
                   <a href="{{ url_for('auth.login') }}">déjà inscris? <span style="color: #C4E6E5;">connecte toi !</span></a>

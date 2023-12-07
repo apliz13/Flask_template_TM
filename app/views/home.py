@@ -1,4 +1,4 @@
-from flask import (Blueprint, flash, g, redirect, render_template, request, session, url_for)
+from flask import (Blueprint, flash, g, redirect, render_template, request, session, url_for, jsonify)
 from app.db.db import get_db
 # Routes /...
 home_bp = Blueprint('home', __name__)
@@ -10,6 +10,12 @@ home_bp = Blueprint('home', __name__)
 def landing_page():
     # Affichage de la page principale de l'application
     return render_template('home/index.html')
+
+@home_bp.route('/prof', methods=('GET', 'POST'))
+def prof():
+    # Affichage de la page principale de l'application pour les profs
+    return render_template('home/prof.html')
+
 
 
 # Gestionnaire d'erreur 404 pour toutes les routes inconnues
@@ -52,5 +58,20 @@ def testrank():
                     (satisfaction, userid, date)
                 )
             db.commit()
-    return session['user_id']
+    return "ok"
+
+
+
+"""if request.content_type == 'application/json':
+    data = request.get_json()
+    db = get_db()
+    today_reaction = db.execute(
+        'SELECT * FROM satisfactionTABLE WHERE id_users=? AND date=?',
+        (session['user_id'], data['date'])
+    ).fetchone()
+    if today_reaction is None:
+        value = None
+    else:
+        value = today_reaction['satisfaction']
+    return jsonify({'satisfaction': value})"""
 

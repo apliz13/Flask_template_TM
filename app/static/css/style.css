@@ -19,6 +19,18 @@ body {
 
 /*auth*/
 
+.checkbox{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    padding: 6px;
+    padding-right: 60px;
+    border-radius: 8px;
+    margin-left: 55px;
+    margin-right:auto;
+}
+
 .auth {
     font-family: 'Inter', sans-serif;    
     height: 100vh;
@@ -105,7 +117,7 @@ body {
     border: none;
     border-radius: 20px;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 30px;
 }
 
 a {
@@ -124,7 +136,7 @@ a.forgot {
     display: flex;
     align-items: center;
     position: absolute;
-    bottom: 30px;
+    bottom: 45px;
 }
 
 .create i {
@@ -163,7 +175,7 @@ ul,li{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 10px;
+    padding: 20px;
     
 }
 
@@ -185,12 +197,41 @@ ul,li{
     }
     }
     
+.container_rose {
+    display: flex;
+    gap: 1vh;
+    margin-left: 1vh;
+    margin-top: 2vh;
+    width: 65vw;
+    height: 40vh;
+    box-shadow: 0 0 17px 10px rgb(0 0 0 / 5%);
+    border-radius: 20px;
+    background: #FBBECA;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    
+}
 
 
+.container_1{
+    background-color: #FFA1B4;
+    width: 30vw;
+    height: 40vh;
+    border-radius: 20px;
+}
 .padding_date{
     font-size: larger;
-    margin-left: 35vh;
-    margin-top: 2vh;
+    margin-left: 20%;
+    margin-top: 1vh;
+
+}
+
+.texte_index_container{
+    line-height: 50px;
+    font-size: larger;
 
 }
 
@@ -228,6 +269,7 @@ ul,li{
 
 }
 
+
 .user h2{
     font-size: 15px;
     font-weight: 600;
@@ -245,9 +287,54 @@ ul,li{
 
 /*profil*/
 
+.body_profil{
+    
+    height: 100vh;
+    background-image: linear-gradient(to right top, #d7f3f2, #bdebf8, #afe0ff, #b7d0ff, #d3bbff, #e8aeec, #f8a3d3, #ff9bb7, #ffa2a3, #ffae8d, #ffc07c, #ffd372);
+}
+
 .titre_profil{
     font-size: 40px;
     font-weight: 800;
     margin:  30px; 
 }
+
+.container_index_profil {
+    margin-left: 10vh;
+    margin-top: 3vh;
+    width: 25vw;
+    height: 55vh;
+    box-shadow: 0 0 17px 10px rgb(0 0 0 / 5%);
+    border-radius: 20px;
+    background: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    
+}
+
+/*prof*/
+
+.container_index {
+    margin-right: 0%;
+    width: 75vw;
+    height: 80vh;
+    box-shadow: 0 0 17px 10px rgb(0 0 0 / 5%);
+    border-radius: 20px;
+    background: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    
+}
+
+.body_prof{
+    height: 100vh;
+    background-color: #FDFDFD;
+}
+
 
