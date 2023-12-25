@@ -1,5 +1,8 @@
 from flask import (Blueprint, flash, g, redirect, render_template, request, session, url_for, jsonify)
 from app.db.db import get_db
+from datetime import datetime
+
+
 # Routes /...
 home_bp = Blueprint('home', __name__)
 
@@ -46,6 +49,7 @@ def testrank():
                 'SELECT * FROM satisfactionTABLE WHERE id_users=? AND date=?',
                 (userid, date)
             ).fetchone()
+            db.commit()
             if today_reaction is None:
                 db.execute(
                     'INSERT INTO satisfactionTABLE (id_users, date, satisfaction) VALUES (?, ?, ?)',
@@ -54,12 +58,24 @@ def testrank():
                 
             else:
                 db.execute(
-                    'UPDATE satisfactionTABLE SET satisfaction=? WHERE id_users=? AND date=? VALUES (?, ?, ?)',
+                    'UPDATE satisfactionTABLE SET satisfaction=? WHERE id_users=? AND date=?',
                     (satisfaction, userid, date)
                 )
             db.commit()
     return "ok"
 
+@home_bp.route('/testrank/get_today_hapiness')
+def loadHappiness():
+    db = get_db()
+    today_reaction = db.execute(
+        'SELECT * FROM satisfactionTABLE WHERE satisfactionTABLE.id_users=? AND satisfactionTABLE.date=?',
+        (session['user_id'], datetime.now().strftime("%d-%m-%Y"))
+    ).fetchone()
+    if today_reaction is None:
+        value = "None"
+    else:
+        value = str(today_reaction['satisfaction'])
+    return jsonify({'satisfaction': value})
 
 
 """if request.content_type == 'application/json':

@@ -14,7 +14,8 @@ body {
     height: 100vh;
     justify-content: center;
     align-items: center;
-    background-color: #d7f3f2;
+    /*background-color: #d7f3f2;*/
+    background-image: radial-gradient(circle, #fed032, #ffc259, #ffb97c, #ffb59a, #ffb7b2, #febcc9, #f6c3de, #ebcced, #d9d9fb, #cce4fd, #ccedf8, #d7f3f2);
 }
 
 /*auth*/
@@ -201,7 +202,7 @@ ul,li{
     display: flex;
     gap: 1vh;
     margin-left: 1vh;
-    margin-top: 2vh;
+    margin-top: -1vh;
     width: 65vw;
     height: 40vh;
     box-shadow: 0 0 17px 10px rgb(0 0 0 / 5%);
@@ -232,8 +233,23 @@ ul,li{
 .texte_index_container{
     line-height: 50px;
     font-size: larger;
+    margin-top: 1vh;
 
 }
+
+.Object {
+    font-size: 50px;
+    font-style: normal;
+    padding: 2px 7px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.Active {
+    background-color: pink;
+    border-radius: 50%;
+}
+</style></div>
 
 /*nav*/
 #sidenav{
@@ -257,12 +273,12 @@ ul,li{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
+    width: 10%;
     font-size: 12px;
     padding: 6px;
     padding-right: 60px;
     border-radius: 8px;
-    margin-left: auto;
+    
     margin-right:auto;
     background-color: rgba(215, 243, 242, 0.205);
     box-shadow: 0 0 17px 10px rgb(0 0 0 / 5%);
@@ -290,7 +306,8 @@ ul,li{
 .body_profil{
     
     height: 100vh;
-    background-image: linear-gradient(to right top, #d7f3f2, #bdebf8, #afe0ff, #b7d0ff, #d3bbff, #e8aeec, #f8a3d3, #ff9bb7, #ffa2a3, #ffae8d, #ffc07c, #ffd372);
+    /*background-image: linear-gradient(to right top, #d7f3f2, #bdebf8, #afe0ff, #b7d0ff, #d3bbff, #e8aeec, #f8a3d3, #ff9bb7, #ffa2a3, #ffae8d, #ffc07c, #ffd372);*/
+    background-image: radial-gradient(circle, #fed032, #ffc259, #ffb97c, #ffb59a, #ffb7b2, #febcc9, #f6c3de, #ebcced, #d9d9fb, #cce4fd, #ccedf8, #d7f3f2);
 }
 
 .titre_profil{
@@ -302,7 +319,7 @@ ul,li{
 .container_index_profil {
     margin-left: 10vh;
     margin-top: 3vh;
-    width: 25vw;
+    width: 45vw;
     height: 55vh;
     box-shadow: 0 0 17px 10px rgb(0 0 0 / 5%);
     border-radius: 20px;
@@ -336,5 +353,4 @@ ul,li{
     height: 100vh;
     background-color: #FDFDFD;
 }
-
 

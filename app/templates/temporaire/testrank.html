@@ -1,32 +1,39 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div style="display: flex;flex-direction: row;align-items: center;justify-content: center;">
+<div style="display: flex;flex-direction: row;align-items: center;justify-content: center;" >
     <i class="Object" id="1">&#128128;</i>
     <i class="Object" id="2">&#128577;</i>
     <i class="Object" id="3">&#128528;</i>
     <i class="Object" id="4">&#128578;</i>
     <i class="Object" id="5">&#128513;</i> 
     <script>
-/* onload="fetchHappiness()" */
-        /*function fetchHappiness(){
-            fetch("",
+        
+
+        /*Creating function for fetch the last happiness of the day and apply the selection on the buttion*/
+        function fetchHappiness(){
+            fetch(window.location.href + "/get_today_hapiness",
             {
                 method: 'GET',
-                contentType: 'application/json',
-                body:JSON.stringify({
-                    'request':'satisfaction',
-                    'date':new Date().getDate() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getFullYear()
-                })
+            }).then(response => response.json()).then(data => {
                 
-            }).then(response => {var happiness = response.json()}).catch(error => console.log(error));
-            if(happiness['satisfaction'] != 'None'){
-            var object = document.getElementById(happiness['satisfaction']);
-            object.classList.add("Active");    
-            }
-        }
-        */
 
+                if(data['satisfaction'] != null){
+                var object = document.getElementById(data['satisfaction']);
+                object.classList.add("Active");
+                }
+
+            }).catch(error => console.log(error));
+            
+        }
+        
+        /*Call the function while the windows is loading*/
+        window.onload = function(){
+            fetchHappiness();
+        }
+
+
+        /*Creating function for fetch the last happiness of the day and apply the selection on the buttion*/
         var objects = document.getElementsByClassName("Object");
         var i;
         var myfunction = function() {
@@ -46,6 +53,9 @@
                 })
             })}catch(error){console.log(error)}
         };
+
+        /*Adding event listener on each button*/
+
         for (i = 0; i < objects.length; i++) {
             objects[i].addEventListener('click', myfunction, false);
         }
