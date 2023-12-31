@@ -7,7 +7,6 @@ from datetime import datetime
 home_bp = Blueprint('home', __name__)
 
 
-
 # Route /
 @home_bp.route('/', methods=('GET', 'POST'))
 def landing_page():
@@ -17,8 +16,18 @@ def landing_page():
 @home_bp.route('/prof', methods=('GET', 'POST'))
 def prof():
     # Affichage de la page principale de l'application pour les profs
-    return render_template('home/prof.html')
+    db = get_db()
+    teams = db.execute("SELECT name,id_teams FROM teams").fetchall()
+    eleves = db.execute("SELECT users.last_name, users.first_name, users.id_users, teams_composition.id_teams FROM users INNER JOIN teams_composition ON users.id_users = teams_composition.id_users").fetchall()
+    return render_template('home/index_prof.html',teams=teams, eleves=eleves)
 
+@home_bp.route('/team_prof', methods=('GET', 'POST'))
+def team_prof():
+    # Affichage de la page principale de l'application pour les profs
+    db = get_db()
+    teams = db.execute("SELECT name,id_teams FROM teams").fetchall()
+    eleves = db.execute("SELECT users.last_name, users.first_name, users.id_users, teams_composition.id_teams FROM users INNER JOIN teams_composition ON users.id_users = teams_composition.id_users").fetchall()
+    return render_template('home/team_prof.html',teams=teams, eleves=eleves)
 
 
 # Gestionnaire d'erreur 404 pour toutes les routes inconnues
@@ -77,17 +86,4 @@ def loadHappiness():
         value = str(today_reaction['satisfaction'])
     return jsonify({'satisfaction': value})
 
-
-"""if request.content_type == 'application/json':
-    data = request.get_json()
-    db = get_db()
-    today_reaction = db.execute(
-        'SELECT * FROM satisfactionTABLE WHERE id_users=? AND date=?',
-        (session['user_id'], data['date'])
-    ).fetchone()
-    if today_reaction is None:
-        value = None
-    else:
-        value = today_reaction['satisfaction']
-    return jsonify({'satisfaction': value})"""
 

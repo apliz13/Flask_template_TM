@@ -1,0 +1,45 @@
+{% extends 'base_prof.html' %}
+
+{% block content %}
+<script defer type="text/javascript" src="{{url_for('static', filename='js/random.js')}}"></script>
+<script defer type="text/javascript" src="{{url_for('static', filename='js/search.js')}}"></script>
+
+<div class="container_prof">
+    <div class="find_equipe">
+        <h1 style="color: #fdfdfd;margin-left: 7%;font-size:230%;">Equipes:</h1>
+        
+        <div class="search-input">
+            <input type="search" placeholder="chercher" id="search" data-search>
+        </div>
+        <div class="container_team_cards">
+            {% for team in teams %}
+            <div class="teamCard" teamid={{team.id_teams}}>
+                <h2>{{team.name}}</h2>
+            </div>
+            {% endfor %}
+        </div>
+     
+        
+    </div>
+    <div class="equipe">
+        <div class="search-input-student">
+            <div class="gradient">
+            </div>
+            <input type="search" placeholder="chercher" id="search" data-search-student>
+        </div>
+        <div class="container_student_cards">
+            {% for eleve in eleves %}
+            <div class="studentCard" teamid={{eleve.id_teams}}>
+                <h2>{{eleve.first_name}}</h2>
+                <h2>{{eleve.last_name}}</h2>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+</div>
+
+
+{% endblock %}
+

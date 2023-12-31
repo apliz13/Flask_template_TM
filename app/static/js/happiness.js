@@ -2,7 +2,7 @@
 
 /*Creating function for fetch the last happiness of the day and apply the selection on the buttion*/
 function fetchHappiness(){
-    fetch(window.location.href + "/get_today_hapiness",
+    fetch(window.location.href + "/testrank/get_today_hapiness",
     {
         method: 'GET',
     }).then(response => response.json()).then(data => {
@@ -34,7 +34,7 @@ var myfunction = function() {
     /*A terminer, requete pour envoyer le resultat du sondage/*/
     /*g.user*/
     try{
-    fetch("", {
+    fetch(window.location.href + "/testrank", {
         method: 'POST',
         headers:{'Content-Type': 'application/json'},
         body:JSON.stringify({
