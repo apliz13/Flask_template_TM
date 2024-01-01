@@ -3,6 +3,7 @@ from app.db.db import get_db
 from datetime import datetime
 
 
+
 # Routes /...
 home_bp = Blueprint('home', __name__)
 
@@ -11,7 +12,14 @@ home_bp = Blueprint('home', __name__)
 @home_bp.route('/', methods=('GET', 'POST'))
 def landing_page():
     # Affichage de la page principale de l'application
-    return render_template('home/index.html')
+    try:
+        if session['type_user']:
+            return render_template('home/index.html')
+
+        elif not session['type_user']:
+            return render_template('home/index_prof.html')
+    except:
+        return render_template('auth/login.html')
 
 @home_bp.route('/prof', methods=('GET', 'POST'))
 def prof():
@@ -28,6 +36,13 @@ def team_prof():
     teams = db.execute("SELECT name,id_teams FROM teams").fetchall()
     eleves = db.execute("SELECT users.last_name, users.first_name, users.id_users, teams_composition.id_teams FROM users INNER JOIN teams_composition ON users.id_users = teams_composition.id_users").fetchall()
     return render_template('home/team_prof.html',teams=teams, eleves=eleves)
+
+@home_bp.route('/add_team', methods=('GET', 'POST'))
+def add_team():
+    db = get_db()
+    teams = db.execute("SELECT name,id_teams FROM teams").fetchall()
+    eleves = db.execute("SELECT users.last_name, users.first_name, users.id_users, teams_composition.id_teams FROM users INNER JOIN teams_composition ON users.id_users = teams_composition.id_users").fetchall()    
+    return render_template('home/add_team.html',teams=teams, eleves=eleves)
 
 
 # Gestionnaire d'erreur 404 pour toutes les routes inconnues

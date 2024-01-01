@@ -7,7 +7,7 @@ cards = document.getElementsByClassName('studentCard');
 
 for (let i = 0; i < cards.length; i++) {
   cards[i].style.color = selectRandom(colors);
-  cards[i].style.border = "2px solid" + selectRandom(colors);
+  cards[i].style.border = "3px solid" + selectRandom(colors);
 }
 
 console.log("TEST LOG");

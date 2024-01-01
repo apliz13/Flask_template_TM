@@ -21,6 +21,11 @@ def register():
         password = request.form['password']
         first_name = request.form['first_name']
         last_name = request.form['last_name']
+        try:
+            type_user = request.form['type_user']
+            type_user = 1
+        except:
+            type_user = 0
         
         # On récupère la base de donnée
         db = get_db()
@@ -29,7 +34,7 @@ def register():
         # on essaie d'insérer l'utilisateur dans la base de données
         if username and password and first_name and last_name:
             try:
-                db.execute("INSERT INTO users (username, password, first_name, last_name) VALUES (?, ?, ?, ?)",(username, generate_password_hash(password), first_name, last_name))
+                db.execute("INSERT INTO users (username, password, first_name, last_name, type_user) VALUES (?, ?, ?, ?, ?)",(username, generate_password_hash(password), first_name, last_name, type_user))
                 # db.commit() permet de valider une modification de la base de données
                 db.commit()
             except db.IntegrityError:
@@ -81,7 +86,10 @@ def login():
         if error is None:
             session.clear()
             session['user_id'] = user['id_users']
+            session['type_user'] = user['type_user']
             # On redirige l'utilisateur vers la page principale une fois qu'il s'est connecté
+            if user['type_user']==1:
+                return redirect("/prof")
             return redirect("/")
         
         else:

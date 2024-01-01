@@ -130,6 +130,15 @@ body{
     margin-right: 5%;
 }  
 
+#petit-carre5{
+    width: 12px;
+    height: 12px;
+    border-radius: 30%;
+    background-color: #ffb97c;
+    margin-left: 10%;
+    margin-right: 5%;
+}  
+
 .action_line{
     display: flex;
     justify-content: space-between;
@@ -214,8 +223,6 @@ body{
 }
 
 
-
-
 .container_student_cards{
     display: flex;
     flex-direction: column;
@@ -279,17 +286,12 @@ body{
     background-image: radial-gradient(circle, #fed032, #ffc259, #ffb97c, #ffb59a, #ffb7b2, #febcc9, #f6c3de, #ebcced, #d9d9fb, #cce4fd, #ccedf8, #d7f3f2);
 }
 
-.hide{
-    display: none;
-}
 
 .container_team_cards_big{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    height: 80vh;
-    width: 70%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 60%;
+    width: 100%;
     margin-top: 5%;
 
 }
@@ -299,8 +301,8 @@ body{
     justify-content: flex-start;
     align-items: flex-start;
     border-radius: 15px;
-    height: 98vh;
-    width: 46vw;
+    height: 80vh;
+    width: 75vw;
     order: 1;
     flex-direction: column;
 }
@@ -308,7 +310,7 @@ body{
     background: #FDFDFD;
     height: 55px;
     display: flex;
-    width: 45%;
+    width: 30%;
     align-items: center;
     border-radius: 10px;
     padding: 0 15px;
@@ -324,4 +326,173 @@ body{
     width: 100%;
     height: 100%;
     margin-left: 10px;
+}
+
+.teamCard_big{
+    height: 90%;
+    width: 80%;
+    background-color: #FDFDFD;
+    border-radius: 15px;
+    margin: 15px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 20%;
+}
+
+.teamCard_big h2 {
+    margin-left: 5%;
+    font-size: 170%;
+    color: #6f6f6f;
+}
+
+.container_team_cards {
+    scrollbar-color: pink rgba(255, 105, 180, 0);
+  }
+
+.container_team_cards::-webkit-scrollbar {
+width: 10px;
+height: 10px; 
+}
+.container_team_cards::-webkit-scrollbar-thumb { 
+background: pink;
+}
+.container_team_cards::-webkit-scrollbar-track { 
+background: none;
+}
+
+.activeTeam h2{
+    color: pink;
+}
+
+
+
+.activeTeam_big h2 {
+
+    color: pink;
+}
+
+.container_add{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-radius: 15px;
+    height: 98vh;
+    margin-right: 1vh;
+    width: 77vw;
+
+}
+
+.add_teams{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    height: 85%;
+    width: 100%;
+
+}
+
+.container_white{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #fdfdfd91;
+    width: 70%;
+    height: 70%;
+    margin-bottom: 10%;
+    margin-right: 10%;
+    border-radius: 15px;
+}
+
+.mod_team{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: #6f6f6f;
+    border-bottom: 2px #6f6f6f solid;
+    height: 20%;
+    width: 90%;
+    
+}
+
+.name_team{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    color: #6f6f6f;
+    border-bottom: 2px #6f6f6f solid;
+    height: 20%;
+    width: 90%;
+    
+}
+
+.add_sport{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    color: #6f6f6f;
+    border-bottom: 2px #6f6f6f solid;
+    height: 40%;
+    width: 90%;
+    
+}
+
+.button_space{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20%;
+    width: 90%;
+    
+}
+
+.add_name input{
+    background: none;
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 100%;
+    margin-left: 10px;
+    font-size: 100%;
+}
+
+.add_name{
+    background: #FDFDFD;
+    height: 55px;
+    display: flex;
+    width: 30%;
+    align-items: center;
+    border-radius: 10px;
+    padding: 0 15px;
+    margin-left: 3%;
+    
+}
+
+.add_sport input{
+    background: none;
+    border: none;
+    outline: none;
+    width: 90%;
+    height: 100%;
+    margin-left: 10px;
+    font-size: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+.hide{
+    display: none;
 }

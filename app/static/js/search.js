@@ -27,6 +27,10 @@ TeamCards.forEach(card => {
     card.addEventListener("click", e => {
         // Update selected team when the card is clicked
         selectedTeam = e.currentTarget.getAttribute("teamid");
+        TeamCards.forEach(card => {
+            card.classList.remove("activeTeam");
+        });
+        e.currentTarget.classList.add("activeTeam");
         // Iterate through students to filter and toggle visibility
         students.forEach(student => {
             const isVisible = student.teamId == selectedTeam && (student.studentFirstName.toLowerCase().includes(studentString) || student.studentLastName.toLowerCase().includes(studentString));

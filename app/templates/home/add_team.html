@@ -1,0 +1,36 @@
+{% extends 'base_prof.html' %}
+
+{% block content %}
+<script defer type="text/javascript" src="{{url_for('static', filename='js/random.js')}}"></script>
+<script defer type="text/javascript" src="{{url_for('static', filename='js/search_team-page.js')}}"></script>
+
+<div class="container_add">
+    <h1 style="color: #fdfdfd;margin-left: 5%;font-size:230%;margin-top: 3%;">Equipes:</h1>
+    <div class="add_teams">
+       <div class="container_white">
+    
+            <div class="mod_team">
+                <h1>+ Ajouter une équipe :</h1>
+            </div>
+            <div class="name_team">
+                <h1>Nom de l'équipe :</h1>
+                <div class="add_name">
+                    <input type="text" placeholder="nom" name="add_name" id="add_name" required>
+                </div>
+            </div> 
+            <div class="add_sport">
+                <h1>Ajouter un participant:</h1>
+                <div class="add_name">
+                    <input type="text" placeholder="adresse e-mail" name="add_name" id="add_name" required>
+                </div>
+            </div>
+            <div class="button_space">
+            </div>
+       </div>
+    </div>
+
+
+</div>
+
+
+{% endblock %}
