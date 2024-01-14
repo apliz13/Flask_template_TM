@@ -1,0 +1,15 @@
+{% extends 'base_prof.html' %}
+
+
+{% block content %}
+    <body class="body_profil">
+      <div class="container_index_profil">
+        <h2 class="titre_profil">Mon profile</h2>
+        <ul>
+          <li>Username: {{g.user.username}}</li>
+          <li>First name: {{g.user.first_name}}</li>
+          <li>Last name: {{g.user.last_name}}</li>
+        </ul>
+      </div>
+    </body>
+{% endblock %}

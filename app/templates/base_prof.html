@@ -12,7 +12,7 @@
             <div id="user">
                 <img src="{{ url_for('static', filename='img/user_.png') }}" class="user_img">
                 <div>
-                    <li style="list-style-type: none;"><a href="{{url_for('user.show_profile')}}"><h2>{{ g.user['username'] }}</h2></a></li>
+                    <li style="list-style-type: none;"><a href="{{url_for('user.show_profile_prof')}}"><h2>{{ g.user['username'] }}</h2></a></li>
                 </div>
             </div>
             <div class="nav_link">
@@ -20,16 +20,16 @@
                     <h3 style="color: #6f6f6f;margin-left: 5px;">Action:</h3>
                 </div>
                 <div class="alignement_nav">
-                    <div id="petit-carre1"></div>
-                    <a href="{{ url_for('home.landing_page') }}">Home</a>
-                </div>
-                <div class="alignement_nav">
-                    <div id="petit-carre2"></div>
-                    <a href="{{ url_for('auth.logout') }}">Logout</a>
-                </div>
-                <div class="alignement_nav">
                     <div id="petit-carre3"></div>
-                    <a href="{{ url_for('home.prof') }}">home p</a>
+                    <a href="{{ url_for('home.prof') }}">home</a>
+                </div>
+                <div class="alignement_nav">
+                    <div id="petit-carre1"></div>
+                    <a href="{{ url_for('home.landing_page') }}">création d'entrainement</a>
+                </div>
+                <div class="alignement_nav">
+                    <div id="petit-carre1"></div>
+                    <a href="{{ url_for('home.add_training') }}">création d'entrainement</a>
                 </div>
                 <div class="alignement_nav">
                     <div id="petit-carre4"></div>
@@ -37,7 +37,13 @@
                 </div>
                 <div class="alignement_nav">
                     <div id="petit-carre5"></div>
-                    <a href="{{ url_for('home.add_team') }}">groupe</a>
+                    <a href="{{ url_for('home.add_team') }}">gestion de groupe</a>
+                </div>
+                <div class="alignement_nav">
+                    <div id="petit-carre2"></div>
+                    <a href="{{ url_for('auth.logout') }}">Logout</a>
+                </div>
+                
                 </div>
             </div>
         </div>

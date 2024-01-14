@@ -15,17 +15,17 @@
                 <div id="user">
                     <img src="{{ url_for('static', filename='img/user_.png') }}" class="user_img">
                     <div>
-                        <li><a href="{{url_for('user.show_profile')}}"><h2>{{ g.user['username'] }}</h2></a></li>
+                        <li><a href="{{url_for('user.show_profile')}}"><h2 style="color: black;">{{ g.user['username'] }}</h2></a></li>
                     </div>
                 </div>
                 <div>
                     <ul>
-                        <li><a href="{{url_for('home.landing_page')}}"><p class="side-nav-text">Profile</p></li>
-                        <li><a href="{{url_for('home.prof')}}"><p class="side-nav-text">Profile</p></a></li>
-                        <li><a href="{{url_for('user.show_profile')}}"><p class="side-nav-text">Profile</p></a></li>   
+                        <li><a href="{{url_for('home.landing_page')}}" style="color: black;"><p class="side-nav-text">Profile</p></li>
+                        <li><a href="{{url_for('home.prof')}}" style="color: black;"><p class="side-nav-text">bibliothèque</p></a></li>
+                          
                     </ul>
                     <ul>
-                        <li><a href="/auth/logout"><p>Log Out</p></a>
+                        <li><a href="/auth/logout" style="color: black;"><p>Log Out</p></a>
                     </ul>
                 </div>
             </div>

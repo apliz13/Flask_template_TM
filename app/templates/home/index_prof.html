@@ -6,8 +6,10 @@
 
 <div class="container_prof">
     <div class="find_equipe">
-        <h1 style="color: #fdfdfd;margin-left: 7%;font-size:230%;">Equipes:</h1>
-        
+        <div class="high_part">
+            <div><h1 style="color: #fdfdfd;margin-left: 7%;font-size:230%;">Equipes:</h1></div>
+            <div><a href="{{url_for('home.add_team')}}" style="text-decoration: none;" ><h1 style="color: #fdfdfd;font-size:400%;margin-top: 10px;">+</h1></a></div>
+        </div>
         <div class="search-input">
             <input type="search" placeholder="chercher" id="search" data-search>
         </div>
@@ -26,6 +28,8 @@
             <div class="gradient">
             </div>
             <input type="search" placeholder="chercher" id="search" data-search-student>
+            <div><a href="{{url_for('home.add_team')}}" style="text-decoration: none;" ><h1 style="color: #fdfdfd;font-size:400%;margin-top: 10px;">+</h1></a></div>
+
         </div>
         <div class="container_student_cards">
             {% for eleve in eleves %}

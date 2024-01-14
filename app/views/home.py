@@ -25,25 +25,99 @@ def landing_page():
 def prof():
     # Affichage de la page principale de l'application pour les profs
     db = get_db()
-    teams = db.execute("SELECT name,id_teams FROM teams").fetchall()
-    eleves = db.execute("SELECT users.last_name, users.first_name, users.id_users, teams_composition.id_teams FROM users INNER JOIN teams_composition ON users.id_users = teams_composition.id_users").fetchall()
+    user_id = str(session['user_id'])
+    teams_query = """
+            SELECT teams.name, teams.id_teams
+            FROM teams
+            INNER JOIN teams_appartenance ON teams.id_teams = teams_appartenance.id_teams
+            WHERE teams_appartenance.id_coachs = ?
+        """
+    teams = db.execute(teams_query, user_id,).fetchall()
+
+    eleves_query = """
+            SELECT *
+            FROM teams_appartenance
+            INNER JOIN teams_composition ON teams_appartenance.id_teams = teams_composition.id_teams
+			INNER JOIN users ON teams_composition.id_users = users.id_users
+            
+        """
+    eleves = db.execute(eleves_query).fetchall() 
     return render_template('home/index_prof.html',teams=teams, eleves=eleves)
 
 @home_bp.route('/team_prof', methods=('GET', 'POST'))
 def team_prof():
     # Affichage de la page principale de l'application pour les profs
     db = get_db()
-    teams = db.execute("SELECT name,id_teams FROM teams").fetchall()
-    eleves = db.execute("SELECT users.last_name, users.first_name, users.id_users, teams_composition.id_teams FROM users INNER JOIN teams_composition ON users.id_users = teams_composition.id_users").fetchall()
+    user_id = str(session['user_id'])
+    teams_query = """
+            SELECT teams.name, teams.id_teams
+            FROM teams
+            INNER JOIN teams_appartenance ON teams.id_teams = teams_appartenance.id_teams
+            WHERE teams_appartenance.id_coachs = ?
+        """
+    teams = db.execute(teams_query, user_id,).fetchall()
+
+    eleves_query = """
+            SELECT users.first_name, users.last_name, teams_composition.id_teams 
+            FROM teams_appartenance
+            INNER JOIN teams_composition ON teams_appartenance.id_teams = teams_composition.id_teams
+            INNER JOIN users ON teams_composition.id_users = users.id_users
+            WHERE teams_appartenance.id_coachs = ? AND users.id_users != ?
+        """
+    eleves = db.execute(eleves_query, (user_id,user_id,)).fetchall() 
+    
     return render_template('home/team_prof.html',teams=teams, eleves=eleves)
 
 @home_bp.route('/add_team', methods=('GET', 'POST'))
 def add_team():
-    db = get_db()
-    teams = db.execute("SELECT name,id_teams FROM teams").fetchall()
-    eleves = db.execute("SELECT users.last_name, users.first_name, users.id_users, teams_composition.id_teams FROM users INNER JOIN teams_composition ON users.id_users = teams_composition.id_users").fetchall()    
-    return render_template('home/add_team.html',teams=teams, eleves=eleves)
+    if request.method == 'POST':
 
+        name = request.form['add_name']
+        
+        if name:
+            try:
+                db = get_db()
+                db.execute("INSERT INTO teams (name) VALUES (?)",(name,))
+                db.commit()
+                return redirect(url_for("home.add_team"))
+            except db.IntegrityError:
+
+                
+                error = f"User {name} is already registered."
+                flash(error)
+                return redirect(url_for("home.add_team"))
+            
+
+        else:
+            error = "name invalid"
+            flash(error)
+            return redirect(url_for("home.add_team"))
+    else:
+        # Si aucune donnée de formulaire n'est envoyée, on affiche le formulaire d'inscription
+        return render_template('home/add_team.html')
+    
+@home_bp.route('/add_training', methods=('GET', 'POST'))
+def add_training():
+    # Affichage de la page principale de l'application pour les profs
+    db = get_db()
+    user_id = str(session['user_id'])
+    teams_query = """
+            SELECT teams.name, teams.id_teams
+            FROM teams
+            INNER JOIN teams_appartenance ON teams.id_teams = teams_appartenance.id_teams
+            WHERE teams_appartenance.id_coachs = ?
+        """
+    teams = db.execute(teams_query, user_id,).fetchall()
+
+    eleves_query = """
+            SELECT *
+            FROM teams_appartenance
+            INNER JOIN teams_composition ON teams_appartenance.id_teams = teams_composition.id_teams
+			INNER JOIN users ON teams_composition.id_users = users.id_users
+            
+        """
+    eleves = db.execute(eleves_query).fetchall() 
+    return render_template('home/add_training.html',teams=teams, eleves=eleves)
 
 # Gestionnaire d'erreur 404 pour toutes les routes inconnues
 @home_bp.route('/<path:text>', methods=['GET', 'POST'])

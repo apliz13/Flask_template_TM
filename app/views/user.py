@@ -10,3 +10,9 @@ user_bp = Blueprint('user', __name__, url_prefix='/user')
 def show_profile():
     # Affichage de la page principale de l'application
     return render_template('user/profile.html')
+
+@user_bp.route('/profile_prof', methods=('GET', 'POST'))
+@login_required 
+def show_profile_prof():
+    # Affichage de la page principale de l'application
+    return render_template('user/profile_prof.html')
