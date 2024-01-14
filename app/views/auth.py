@@ -88,7 +88,7 @@ def login():
             session['user_id'] = user['id_users']
             session['type_user'] = user['type_user']
             # On redirige l'utilisateur vers la page principale une fois qu'il s'est connecté
-            if user['type_user']==1:
+            if user['type_user'] == 1:
                 return redirect("/prof")
             return redirect("/")
         

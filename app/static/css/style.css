@@ -102,9 +102,6 @@ body {
     margin-left: 10px;
 }
 
-.text-input i {
-    color: #d52020;
-}
 
 ::placeholder {
     color: #9a9a9a;
@@ -255,6 +252,7 @@ ul,li{
     line-height: 50px;
     font-size: larger;
     margin-top: 1vh;
+
 
 }
 

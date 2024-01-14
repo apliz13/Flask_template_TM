@@ -13,10 +13,10 @@ home_bp = Blueprint('home', __name__)
 def landing_page():
     # Affichage de la page principale de l'application
     try:
-        if session['type_user']:
+        if session['type_user'] == 0:
             return render_template('home/index.html')
 
-        elif not session['type_user']:
+        elif session['type_user'] == 1:
             return render_template('home/index_prof.html')
     except:
         return render_template('auth/login.html')
@@ -43,6 +43,54 @@ def prof():
         """
     eleves = db.execute(eleves_query).fetchall() 
     return render_template('home/index_prof.html',teams=teams, eleves=eleves)
+
+@home_bp.route('/send_team', methods=('GET', 'POST'))
+def send_team():
+    # Affichage de la page principale de l'application pour les profs
+    db = get_db()
+    user_id = str(session['user_id'])
+    teams_query = """
+            SELECT teams.name, teams.id_teams
+            FROM teams
+            INNER JOIN teams_appartenance ON teams.id_teams = teams_appartenance.id_teams
+            WHERE teams_appartenance.id_coachs = ?
+        """
+    teams = db.execute(teams_query, user_id,).fetchall()
+
+    eleves_query = """
+            SELECT users.first_name, users.last_name, teams_composition.id_teams 
+            FROM teams_appartenance
+            INNER JOIN teams_composition ON teams_appartenance.id_teams = teams_composition.id_teams
+            INNER JOIN users ON teams_composition.id_users = users.id_users
+            WHERE teams_appartenance.id_coachs = ? AND users.id_users != ?
+        """
+    eleves = db.execute(eleves_query, (user_id,user_id,)).fetchall() 
+    
+    return render_template('home/send_team.html',teams=teams, eleves=eleves)
+
+@home_bp.route('/send_student', methods=('GET', 'POST'))
+def send_student():
+    # Affichage de la page principale de l'application pour les profs
+    db = get_db()
+    user_id = str(session['user_id'])
+    teams_query = """
+            SELECT teams.name, teams.id_teams
+            FROM teams
+            INNER JOIN teams_appartenance ON teams.id_teams = teams_appartenance.id_teams
+            WHERE teams_appartenance.id_coachs = ?
+        """
+    teams = db.execute(teams_query, user_id,).fetchall()
+
+    eleves_query = """
+            SELECT users.first_name, users.last_name, teams_composition.id_teams 
+            FROM teams_appartenance
+            INNER JOIN teams_composition ON teams_appartenance.id_teams = teams_composition.id_teams
+            INNER JOIN users ON teams_composition.id_users = users.id_users
+            WHERE teams_appartenance.id_coachs = ? AND users.id_users != ?
+        """
+    eleves = db.execute(eleves_query, (user_id,user_id,)).fetchall() 
+    
+    return render_template('home/send_student.html',teams=teams, eleves=eleves)
 
 @home_bp.route('/team_prof', methods=('GET', 'POST'))
 def team_prof():

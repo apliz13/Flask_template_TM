@@ -506,6 +506,7 @@ background: none;
     height: 50%;
     width: 15%;
     margin-top: 7px;
+    
 }
 
 .finished-link{
@@ -520,6 +521,7 @@ background: none;
     font-size: 100%;
     color: #fdfdfd;
     cursor: pointer;
+    
 }
 
 .finished-btn:hover{
@@ -621,6 +623,66 @@ ul, li {
     height: 49%;
     border-radius: 20px;
 }
+
+.under_portion{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-left: 2%;
+    margin-bottom: 2%;
+    width: 88%;
+    height: 10%;
+
+}
+
+.sent-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fdd6e2;
+    font-size: 12px;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+    width: 20%;
+    height: 80%;
+    font-size: 100%;
+    color: #fdfdfd;
+    cursor: pointer;
+    margin-right: 2%;
+    
+}
+
+.sent-btn:hover{
+    border: 2px solid #fdfdfd;
+}
+
+.sent-btn a{
+    color: #fdfdfd;
+}
+
+.teamCard_big2{
+    height: 50%;
+    width: 80%;
+    background-color: #FDFDFD;
+    border-radius: 15px;
+    margin: 15px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 20%;
+}
+
+.high_part2{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 90%;
+    height: 20%;
+    margin-top: -5%;
+    margin-left: 3%;
+}
+
 
 .hide{
     display: none;
