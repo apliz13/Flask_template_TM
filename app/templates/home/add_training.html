@@ -1,49 +1,136 @@
 {% extends 'base_prof.html' %}
 
 {% block content %}
-<script defer type="text/javascript" src="{{url_for('static', filename='js/random.js')}}"></script>
-<script defer type="text/javascript" src="{{url_for('static', filename='js/search_team-page.js')}}"></script>
 
 <div class="container_add">
-    <h1 style="color: #4F4F4F ;margin-left: 5%;font-size:230%;margin-top: 3%;">Equipes:</h1>
-    <div class="container_rose">
+    <h1 style="color: #ffe9a2 ;margin-left: 2%;font-size:230%;margin-top: 3%;">Création d'un entrainement:</h1>
+
+    
+    <div class="container_rose hide">
         <div class="container_1">
-        <h1 style="padding: 1vh;color: #fdfdfd;">sets de sauts</h1>
-        <h1 style="padding: 1vh;color: #fdfdfd6d;margin-left: 25%;margin-top: 32%;">Enter</h1>
+        <h1 style="padding: 1vh;color: #fdfdfd;">sets</h1>
+        
+            <div class="input-container">
+              <input id="sets" class="todo-input" placeholder="Entrez">
+            </div>
+            <div class="filters">
+              <div class="delete-all">Effacer tout</div>
+            </div>
+            <div class="todos-container">
+              <ul class="todos"></ul>
+            </div>
+          
         </div>
         <div class="container_1">
         <h1 style="padding: 1vh;color: #fdfdfd;">sauts</h1>
-        <h1 style="padding: 1vh;color: #fdfdfd6d;margin-left: 25%;margin-top: 50%;">Enter</h1>
+        <div class="input-container">
+            <input id="sauts" class="todo-input" placeholder="Entrez">
+          </div>
+          <div class="filters">
+            <div class="delete-all">Effacer tout</div>
+          </div>
+          <div class="todos-container">
+            <ul class="todos"></ul>
+
+          </div>
+        
         </div>
         <div class="container_1">
         <h1 style="padding: 1vh;color: #fdfdfd;">programme</h1>
-        <h1 style="padding: 1vh;color: #fdfdfd6d;margin-left: 25%;margin-top: 50%;">Enter</h1>
+        <div class="input-container">
+            <input id="programme" class="todo-input" placeholder="Entrez">
+          </div>
+          <div class="filters">
+            <div class="delete-all">Effacer tout</div>
+          </div>
+          <div class="todos-container">
+            <ul class="todos"></ul>
+
+          </div>
         </div>
         <div class="container_1">
-        <h1 style="padding: 1vh;color: #fdfdfd;">moitié de prog.</h1>
-        <h1 style="padding: 1vh;color: #fdfdfd6d;margin-left: 25%;margin-top: 32%;">Enter</h1>
+        <h1 style="padding: 1vh;color: #fdfdfd;font-size: larger;margin-bottom: 6px;">moitié de prog.</h1>
+        <div class="input-container">
+            <input id="moitie_de_programme" class="todo-input" placeholder="Entrez">
+          </div>
+          <div class="filters">
+            <div class="delete-all">Effacer tout</div>
+          </div>
+          <div class="todos-container">
+            <ul class="todos"></ul>
+
+          </div>
         </div>
         <div class="container_2">
         <div class="container_3">
-        <h1 style="padding: 1vh;color: #fdfdfd;">pirouette</h1>
-        <h1 style="padding: 1vh;color: #fdfdfd6d;margin-left: 25%;margin-top: 7%;">Enter</h1></div>
+            <h1 style="padding: 1vh;color: #fdfdfd;">pirouette</h1>
+
+            <select class="dropdown_menu" name="pirouette" id="pirouettes">
+                <option value=""> choisir:</option>
+                <option value="pirouette du long">pirouette du long</option>
+                <option value="pirouette du court">pirouette du court</option>
+                <option value="pirouette simple">pirouette simple</option>
+                <option value="pirouette sautee">pirouette sautée</option>
+                <option value="pirouette combinee">pirouette combinée</option>
+                <option value="pirouette sautee combinee">pirouette sautée combinée</option>
+                <option value="pirouette debout">pirouette debout</option>
+                <option value="pirouette assise">pirouette assise</option>
+                <option value="pirouette allongee">pirouette allongée</option>
+                
+            </select>
+            <div class="todos-container">
+                <ul class="todos"></ul>
+            </div>
+        </div>
         
         <div class="container_3">
-        <h1 style="padding: 1vh;color: #fdfdfd;font-size:medium ;">StSq et ChSq</h1>
-        <h1 style="padding: 1vh;color: #fdfdfd6d;margin-left: 25%;margin-top: 15%;">Enter</h1></div>
-        
+            <h1 style="padding: 1vh;color: #fdfdfd;font-size:medium ;">StSq et ChSq</h1>
+            <div class="checkbox-stsq">
+                <input type="checkbox" id="StSq" name="StSq" value="StSq">
+                <label for="StSq">StSq du long</label>
+            </div>
+            <div class="checkbox-stsq">
+                <input type="checkbox" id="ChSq" name="ChSq" value="ChSq">
+                <label for="ChSq">ChSq du long</label>
+            </div>
+            <div class="checkbox-stsq">
+                <input type="checkbox" id="ChSq" name="ChSq" value="ChSq">
+                <label for="ChSq">StSq du court</label>
+            </div>
+            <div class="checkbox-stsq">
+                <input type="checkbox" id="ChSq" name="ChSq" value="ChSq">
+                <label for="ChSq">ChSq du court</label>
+            </div>
         </div>
-    </div>
-    <div class="under_portion">
-        <div class="sent-btn">
-            <a href="{{url_for('home.send_team')}}"<h1 style="font-size: medium;"> envoyer à une équipe</h1></a>
-        </div>
-        <div class="sent-btn">
-            <a href="{{url_for('home.send_student')}}"<h1 style="font-size: medium;"> envoyer à des élèves</h1></a>
-        </div>
-
     </div>
 </div>
 
 
+
+
+
+
+<div class="container_rose hide" id="container_team">
+
+
+</div>
+
+
+<div class="container_rose" id="conatiner_users">
+
+</div>
+
+
+
+<div class="under_portion">
+    <div class="sent-btn">
+        <a href="{{url_for('home.send_team')}}"<h1 style="font-size: medium;"> envoyer à une équipe</h1></a>
+    </div>
+    <div class="sent-btn">
+        <a href="{{url_for('home.send_student')}}"<h1 style="font-size: medium;"> envoyer à des élèves</h1></a>
+    </div>
+</div>
+</div>
+
+<script defer type="text/javascript" src="{{url_for('static', filename='js/todo_list_training.js')}}"></script>
 {% endblock %}

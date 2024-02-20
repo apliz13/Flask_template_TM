@@ -57,9 +57,8 @@ searchInputTeam.addEventListener("input", e => {
 
 searchInputStudent.addEventListener("input", e => {
     studentString = e.target.value.toLowerCase();
-
     students.forEach(student => {
-        const isVisible = student.teamId == selectedTeam && (student.studentFirstName.toLowerCase().includes(studentString) || student.studentLastName.toLowerCase().includes(studentString));
+        const isVisible = ((selectedTeam == null) || (student.teamId == selectedTeam)) && (student.studentFirstName.toLowerCase().includes(studentString) || student.studentLastName.toLowerCase().includes(studentString));
         student.element.classList.toggle("hide", !isVisible);
     });
 });

@@ -1,10 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&family=Poppins:wght@400;600&display=swap');
 
+/**/
+
 
 body{
     font-family: 'Inter', sans-serif;   
     background-image: radial-gradient(circle, #fed032, #ffc259, #ffb97c, #ffb59a, #ffb7b2, #febcc9, #f6c3de, #ebcced, #d9d9fb, #cce4fd, #ccedf8, #d7f3f2);
-
     height: 100%;
     display: flex;
     justify-content: space-between;
@@ -35,7 +36,7 @@ body{
     flex-direction: column;
     display: flex;
     padding: 20px;
-    height: 200px;
+    height: 40%;
     justify-content: space-around;
 }
 
@@ -683,6 +684,190 @@ ul, li {
     margin-left: 3%;
 }
 
+/*on verra*/
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+.input-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.todo-input {
+    width: 100%;
+    outline: none;
+    padding: 10px 10px 10px 20px;
+    background-color: transparent;
+    border: 3px solid #fdfdfd;
+    border-radius: 15px;
+    color: #4f4f4f;
+    font-size: 16px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.todo-input::placeholder {
+  color: #fdfdfd;
+}
+
+
+
+.empty-image {
+  margin: 55px auto 0;
+  display: block;
+}
+
+.todo {
+    color: #e4b3e7;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fdfdfd;
+    border-radius: 10px;
+    margin: 10px 0;
+    padding: 10px 12px;
+    border: 3px solid #fdfdfd;
+    transition: all 0.2s ease;
+}
+
+.todo:first-child {
+  margin-top: 0;
+}
+
+.todo:last-child {
+  margin-bottom: 0;
+}
+
+.todo:hover {
+  background-color:transparent;
+}
+
+.todo label {
+  cursor: pointer;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+  color: #4f4f4f;
+}
+
+.todo span {
+  padding-left: 20px;
+  position: relative;
+  cursor: pointer;
+}
+
+span::before {
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    margin-left: -30px;
+    border-radius: 100px;
+    border: 2px solid #ffffffa1;
+}
+
+
+.todo:hover span::before {
+  border-color: #eee;
+}
+
+.todo .delete-btn  {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #fdfdfd;
+  font-size: 24px;
+}
+
+.todos-container  {
+  height: 300px;
+  overflow: overlay;
+}
+
+.todos-container::-webkit-scrollbar-track  {
+  background: #fdfdfd;
+  border-radius: 20px
+}
+
+.todos-container::-webkit-scrollbar  {
+  width: 0;
+}
+
+.todos-container:hover::-webkit-scrollbar  {
+  width: 7px;
+}
+
+.todos-container::-webkit-scrollbar-thumb  {
+  background: #d7a6d0;
+  border-radius: 20px;
+}
+
+
+
+.delete-all {
+  display: flex;
+  color: #f99d7c;
+  font-size: small;
+  padding: 7px 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-left: 4px;
+  margin-top: -27px;
+  border-radius: 10px;
+
+
+}
+
+.delete-all:hover {
+    color:#e59898 ;
+}
+
+.spin-step {
+    background-color: #FDFDFD;
+    border-radius: 15%;
+}
+
+/* ca m'etonnerait*/
+
+.checkbox-stsq {
+  padding: 7px;
+  color: #fdfdfd;
+}
+
+.dropdown_menu {
+    position: relative;
+    display: inline-block;
+    width: 90%;
+    height: 55%;
+    margin-left: 5%;
+    margin-top: 1%;
+    background-color: #fdd6e2;
+    border-radius: 10px;
+    border-color: transparent;
+    color: #FDFDFD;
+    border: 3px solid #fdfdfd;
+
+
+}
+
+option {
+    color: #fdfdfd;
+    background-color: #fdd6e2;
+    font-size: 15px;
+    border-radius: 30px;
+    border-color: transparent;
+    color: #FDFDFD;
+    border: 3px solid #fdfdfd;
+}
 
 .hide{
     display: none;

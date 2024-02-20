@@ -2,14 +2,29 @@
 
 
 {% block content %}
+
     <body class="body_profil">
-      <div class="container_index_profil">
-        <h2 class="titre_profil">Mon profile</h2>
-        <ul>
-          <li>Username: {{g.user.username}}</li>
-          <li>First name: {{g.user.first_name}}</li>
-          <li>Last name: {{g.user.last_name}}</li>
-        </ul>
-      </div>
+      <form method="post"> 
+        <div class="container_index_profil">
+          <h2 class="titre_profil">Mon profile</h2>
+            
+              <h3 for="username">Username: </h3>
+              <div class="text-input-profile">
+                  
+                  <input type="text" placeholder="{{g.user.username}}" name="username" id="username" required>
+              </div>
+              <h3 for="first_name">First name: </h3>
+              <div class="text-input-profile">
+                  
+                  <input type="text" placeholder="{{g.user.first_name}}" name="first_name" id="first_name" required>
+              </div>
+              <h3 for="last_name">Last name: </h3>
+              <div class="text-input-profile">
+                  
+                  <input type="text" placeholder="{{g.user.last_name}}" name="last_name" id="last_name" required>
+              </div>
+            
+        </div>
+      </form>
     </body>
 {% endblock %}

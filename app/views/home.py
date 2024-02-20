@@ -26,22 +26,27 @@ def prof():
     # Affichage de la page principale de l'application pour les profs
     db = get_db()
     user_id = str(session['user_id'])
+    print(user_id)
     teams_query = """
             SELECT teams.name, teams.id_teams
             FROM teams
             INNER JOIN teams_appartenance ON teams.id_teams = teams_appartenance.id_teams
             WHERE teams_appartenance.id_coachs = ?
         """
-    teams = db.execute(teams_query, user_id,).fetchall()
+    teams = db.execute(teams_query, (int(user_id),)).fetchall()
+    print(teams)
 
     eleves_query = """
-            SELECT *
+            SELECT users.first_name, users.last_name, teams_composition.id_teams
             FROM teams_appartenance
             INNER JOIN teams_composition ON teams_appartenance.id_teams = teams_composition.id_teams
 			INNER JOIN users ON teams_composition.id_users = users.id_users
+            WHERE id_coachs = ?
             
         """
-    eleves = db.execute(eleves_query).fetchall() 
+    eleves = db.execute(eleves_query, (int(user_id),)).fetchall()
+
+    db.close()
     return render_template('home/index_prof.html',teams=teams, eleves=eleves)
 
 @home_bp.route('/send_team', methods=('GET', 'POST'))
@@ -55,7 +60,7 @@ def send_team():
             INNER JOIN teams_appartenance ON teams.id_teams = teams_appartenance.id_teams
             WHERE teams_appartenance.id_coachs = ?
         """
-    teams = db.execute(teams_query, user_id,).fetchall()
+    teams = db.execute(teams_query, (user_id,)).fetchall()
 
     eleves_query = """
             SELECT users.first_name, users.last_name, teams_composition.id_teams 
@@ -65,7 +70,7 @@ def send_team():
             WHERE teams_appartenance.id_coachs = ? AND users.id_users != ?
         """
     eleves = db.execute(eleves_query, (user_id,user_id,)).fetchall() 
-    
+    print(eleves)
     return render_template('home/send_team.html',teams=teams, eleves=eleves)
 
 @home_bp.route('/send_student', methods=('GET', 'POST'))
@@ -79,7 +84,7 @@ def send_student():
             INNER JOIN teams_appartenance ON teams.id_teams = teams_appartenance.id_teams
             WHERE teams_appartenance.id_coachs = ?
         """
-    teams = db.execute(teams_query, user_id,).fetchall()
+    teams = db.execute(teams_query, (user_id,)).fetchall()
 
     eleves_query = """
             SELECT users.first_name, users.last_name, teams_composition.id_teams 
@@ -103,7 +108,7 @@ def team_prof():
             INNER JOIN teams_appartenance ON teams.id_teams = teams_appartenance.id_teams
             WHERE teams_appartenance.id_coachs = ?
         """
-    teams = db.execute(teams_query, user_id,).fetchall()
+    teams = db.execute(teams_query, (user_id,)).fetchall()
 
     eleves_query = """
             SELECT users.first_name, users.last_name, teams_composition.id_teams 
@@ -146,26 +151,64 @@ def add_team():
     
 @home_bp.route('/add_training', methods=('GET', 'POST'))
 def add_training():
-    # Affichage de la page principale de l'application pour les profs
-    db = get_db()
-    user_id = str(session['user_id'])
-    teams_query = """
-            SELECT teams.name, teams.id_teams
-            FROM teams
-            INNER JOIN teams_appartenance ON teams.id_teams = teams_appartenance.id_teams
-            WHERE teams_appartenance.id_coachs = ?
-        """
-    teams = db.execute(teams_query, user_id,).fetchall()
+    if request.method == 'GET':
 
-    eleves_query = """
-            SELECT *
-            FROM teams_appartenance
-            INNER JOIN teams_composition ON teams_appartenance.id_teams = teams_composition.id_teams
-			INNER JOIN users ON teams_composition.id_users = users.id_users
+        db = get_db()
+        user_id = str(session['user_id'])
+        teams_query = """
+                SELECT teams.name, teams.id_teams
+                FROM teams
+                INNER JOIN teams_appartenance ON teams.id_teams = teams_appartenance.id_teams
+                WHERE teams_appartenance.id_coachs = ?
+            """
+        teams = db.execute(teams_query, (user_id,)).fetchall()
+
+        eleves_query = """
+                SELECT *
+                FROM teams_appartenance
+                INNER JOIN teams_composition ON teams_appartenance.id_teams = teams_composition.id_teams
+                INNER JOIN users ON teams_composition.id_users = users.id_users
+                
+            """
+        eleves = db.execute(eleves_query).fetchall() 
+        return render_template('home/add_training.html',teams=teams, eleves=eleves)
+    
+    elif request.method == 'POST':
+        dataJson = request.get_json()
+        if not dataJson or not dataJson['id_teams'] and not dataJson['id_users']:
+            return "No body, missing id_teams or missing id_users", 206
+        db = get_db()
+        elements = dict()
+        for Type, elem_of_type in dataJson['elements'].items():
+            for element in elem_of_type :
+                fetchone = db.execute("SELECT elements.id_elements FROM elements WHERE elements.name == ?", (element,)).fetchone()
+                try:
+                    elements[element] = fetchone['id_elements']
+                except:
+                    db.execute("INSERT INTO elements (name,type) VALUES (?,?)",(element,Type,))
+                    db.commit()
+                    fetchone = db.execute("SELECT elements.id_elements FROM elements WHERE elements.name == ?", (element,)).fetchone()
+                    elements[element] = fetchone['id_elements']
+        
+        db.execute("INSERT INTO trainings (id_team, id_user, date) VALUES (?,?,?)",(dataJson['id_teams'],dataJson['id_users'],dataJson['date'],))
+        db.commit()
+        id_training = db.execute("SELECT trainings.id_trainings FROM trainings WHERE trainings.id_team = ? AND trainings.id_user = ? AND trainings.date = ?",(dataJson['id_teams'],dataJson['id_users'],dataJson['date'],)).fetchone()['id_trainings']
+        
+        for element in elements.values():
+            db.execute("INSERT INTO trainings_compositions (id_trainings, id_element) VALUES (?,?)",(id_training,element,))
+        db.commit()
+        
+        db.close()
+        return "ok"
+
             
-        """
-    eleves = db.execute(eleves_query).fetchall() 
-    return render_template('home/add_training.html',teams=teams, eleves=eleves)
+
+"""
+fetch(window.location.href, {method: 'POST', headers: {'Content-Type': 'application/json'},body: JSON.stringify({date: "15-02-2024", elements: { 1:["axel", "lutz"]}, id_teams: 1, id_users: ""})})
+
+
+"""
+
 
 # Gestionnaire d'erreur 404 pour toutes les routes inconnues
 @home_bp.route('/<path:text>', methods=['GET', 'POST'])
@@ -222,5 +265,4 @@ def loadHappiness():
     else:
         value = str(today_reaction['satisfaction'])
     return jsonify({'satisfaction': value})
-
 

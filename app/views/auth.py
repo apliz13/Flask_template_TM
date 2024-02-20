@@ -34,7 +34,7 @@ def register():
         # on essaie d'insérer l'utilisateur dans la base de données
         if username and password and first_name and last_name:
             try:
-                db.execute("INSERT INTO users (username, password, first_name, last_name, type_user) VALUES (?, ?, ?, ?, ?)",(username, generate_password_hash(password), first_name, last_name, type_user))
+                db.execute("INSERT INTO users (username, password, first_name, last_name, type_user,) VALUES (?, ?, ?, ?, ?)",(username, generate_password_hash(password), first_name, last_name, type_user))
                 # db.commit() permet de valider une modification de la base de données
                 db.commit()
             except db.IntegrityError:
