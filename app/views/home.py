@@ -190,10 +190,14 @@ def add_training():
                     fetchone = db.execute("SELECT elements.id_elements FROM elements WHERE elements.name == ?", (element,)).fetchone()
                     elements[element] = fetchone['id_elements']
         
-        db.execute("INSERT INTO trainings (id_team, id_user, date) VALUES (?,?,?)",(dataJson['id_teams'],dataJson['id_users'],dataJson['date'],))
+        db.execute("INSERT INTO trainings (date) VALUES (?)",(dataJson['date'],))
         db.commit()
-        id_training = db.execute("SELECT trainings.id_trainings FROM trainings WHERE trainings.id_team = ? AND trainings.id_user = ? AND trainings.date = ?",(dataJson['id_teams'],dataJson['id_users'],dataJson['date'],)).fetchone()['id_trainings']
+        id_training = db.execute("SELECT sqlite_sequence.seq FROM sqlite_sequence WHERE sqlite_sequence.name = 'trainings'").fetchone()['seq']
         
+        for team in dataJson['id_teams']:
+            db.execute("INSERT INTO trainings_appartenance (id_trainings, id_teams) VALUES (?,?)",(id_training,team,))
+        for user in dataJson['id_users']:
+            db.execute("INSERT INTO trainings_appartenance (id_trainings, id_users) VALUES (?,?)",(id_training,user,))
         for element in elements.values():
             db.execute("INSERT INTO trainings_compositions (id_trainings, id_element) VALUES (?,?)",(id_training,element,))
         db.commit()
@@ -204,7 +208,7 @@ def add_training():
             
 
 """
-fetch(window.location.href, {method: 'POST', headers: {'Content-Type': 'application/json'},body: JSON.stringify({date: "15-02-2024", elements: { 1:["axel", "lutz"]}, id_teams: 1, id_users: ""})})
+fetch(window.location.href, {method: 'POST', headers: {'Content-Type': 'application/json'},body: JSON.stringify({date: "15-02-2024", elements: { 1:["axel", "lutz"]}, id_teams: [1,2], id_users: []})})
 
 
 """

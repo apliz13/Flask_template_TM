@@ -3,6 +3,14 @@ const todosHtml = initializeTodosHtml();
 let todosJson = {"sets": [], "sauts": [], "programme": [], "moitie_de_programme": [], "pirouettes": []};
 const deleteAllButton = document.querySelectorAll(".delete-all");
 const selects = document.querySelectorAll("select");
+const changePageButton = document.querySelectorAll(".change-page-button");
+const PAGE = document.querySelectorAll(".container_prof, .container_rose")
+const validationButton = document.querySelector(".validation-button");
+const TEAMS = document.querySelectorAll(".teamCard_big2");
+const STUDENTS = document.querySelectorAll(".studentCard");
+const stsqchsq = Array.from(document.querySelectorAll("input#StSq, input#ChSq"));
+let selected_teams = [];
+let selected_users = [];
 
 for (const listName in todosJson) {
 showTodos(listName);
@@ -34,6 +42,55 @@ selects.forEach(select => {select.addEventListener("change", e => {
     addTodo(todo, e.target.id);
   
 })});
+
+changePageButton.forEach(button => {button.addEventListener("click", e => {
+  PAGE.forEach(page => {
+    if (e.currentTarget.id.includes(page.id)) {
+    page.classList.remove("hide")}
+    else {
+      page.classList.add("hide")
+    };})})});
+
+validationButton.addEventListener("click", () => {
+  temp_elements = {}
+  let i = 0;
+  Object.values(todosJson).forEach(elem => {
+    temp_elements[i] = elem.map(input => input.name);
+    i++;
+  });
+  temp_elements[i] = stsqchsq.filter((input) => input.checked).map(input => input.value);
+
+  fetch(window.location.href, 
+    {method: 'POST',
+     headers: {'Content-Type': 'application/json'},
+     body: JSON.stringify({
+      date: new Date().getDate() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getFullYear(),
+      elements: temp_elements,
+      id_teams: selected_teams,
+      id_users: selected_users
+      }
+      )
+    })});
+
+  TEAMS.forEach(team => {team.addEventListener("click", e => {
+    if (e.currentTarget.classList.contains("selected")) {
+      e.currentTarget.classList.remove("selected");
+      selected_teams = selected_teams.filter(team => team != e.currentTarget.getAttribute("teamid"));
+    } else {
+      e.currentTarget.classList.add("selected");
+      selected_teams.push(e.currentTarget.getAttribute("teamid"));
+    }
+  })});
+
+  STUDENTS.forEach(student => {student.addEventListener("click", e => {
+    if (e.currentTarget.classList.contains("selected")) {
+      e.currentTarget.classList.remove("selected");
+      selected_users = selected_users.filter(user => user != e.currentTarget.getAttribute("studentid"));
+    } else {
+      e.currentTarget.classList.add("selected");
+      selected_users.push(e.currentTarget.getAttribute("studentid"));
+    }
+  })});
 
 function initializeTodosHtml() {
   let todosHtml = document.querySelectorAll(".todos");

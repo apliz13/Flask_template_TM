@@ -636,7 +636,7 @@ ul, li {
 
 }
 
-.sent-btn{
+.change-page-button{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -654,11 +654,11 @@ ul, li {
     
 }
 
-.sent-btn:hover{
+.change-page-button:hover{
     border: 2px solid #fdfdfd;
 }
 
-.sent-btn a{
+.change-page-button a{
     color: #fdfdfd;
 }
 
@@ -867,6 +867,11 @@ option {
     border-color: transparent;
     color: #FDFDFD;
     border: 3px solid #fdfdfd;
+}
+
+
+.selected {
+    background-color:#febcc9;
 }
 
 .hide{
