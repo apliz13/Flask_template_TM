@@ -12,14 +12,43 @@ home_bp = Blueprint('home', __name__)
 @home_bp.route('/', methods=('GET', 'POST'))
 def landing_page():
     # Affichage de la page principale de l'application
-    try:
+    #try:
         if session['type_user'] == 0:
-            return render_template('home/index.html')
+            
+            db = get_db()
+
+            id_user = session['user_id']
+            try:
+                id_team_of_user = db.execute('''SELECT teams_composition.id_teams
+                    FROM teams_composition
+                    WHERE teams_composition.id_users = ?''', (id_user,)).fetchone()['id_teams']
+            except:
+                id_team_of_user = None
+            today_date = datetime.now().strftime("%d-%m-%Y")
+            
+            print(today_date)
+            training_data = db.execute('''SELECT elements.name, elements.type
+                FROM elements
+                INNER JOIN trainings_compositions ON elements.id_elements = trainings_compositions.id_element
+                INNER JOIN trainings ON trainings.id_trainings = trainings_compositions.id_trainings
+                INNER JOIN trainings_appartenance ON trainings.id_trainings = trainings_appartenance.id_trainings
+                WHERE trainings.date = ? AND (trainings_appartenance.id_users = ? OR trainings_appartenance.id_teams = ?)''', (today_date, id_user, id_team_of_user,)).fetchall()
+
+            last_type = 0
+            last_type_index = 0
+            sorted_data = [[]]*6
+            for i, element in enumerate(training_data):
+                if element['type'] != last_type:
+                    last_type = element['type']
+                    sorted_data[element['type']] = training_data[last_type_index:i]
+                    last_type_index = i
+                
+            return render_template('home/index.html', sets=sorted_data[0], sauts=sorted_data[1], progs=sorted_data[2], moities=sorted_data[3], spins=sorted_data[4], sequences=sorted_data[5])
 
         elif session['type_user'] == 1:
             return render_template('home/index_prof.html')
-    except:
-        return render_template('auth/login.html')
+    #except:
+        return redirect('auth/login')
 
 @home_bp.route('/prof', methods=('GET', 'POST'))
 def prof():

@@ -11,7 +11,9 @@
 
 
     <div class="container_auth">
-          
+      <div class="design">
+          <img src="{{ url_for('static', filename='img/logo.png') }}" style="width: 100%;margin-left: 3%;" >
+      </div>
       <div class="login">
           <h3 class="title">log in</h3>
           <div class="text-input">
@@ -22,7 +24,6 @@
               <input type="password" placeholder="Password" name="password" id="password" required>
           </div>
           <input type="submit" class="login-btn" value="GO!">
-          <a href="#" class="forgot">mot de passe oublié?<span style="color: #F9B0A7;"> clique ici!</span></a>
           <a href="{{ url_for('auth.register') }}" class="forgot">première visite? <span style="color: #3493A9;">inscris toi !</span> </a>
           <div class="create">    
           </div>
