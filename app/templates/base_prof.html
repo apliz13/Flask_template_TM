@@ -1,6 +1,7 @@
 <!doctype html>
 <head>
-    <title>{% block title %}{% endblock %} - Template de base Flask</title>
+    <title>{% block title %}{% endblock %} SkateFlow</title>
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style-prof.css') }}">
     
 </head>
@@ -41,6 +42,8 @@
                 </div>
                 
                 </div>
+                <img src="{{ url_for('static', filename='img/logo.png') }}" style="width: 100%;" >
+
             </div>
         </div>
        

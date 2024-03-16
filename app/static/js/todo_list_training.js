@@ -1,6 +1,6 @@
 const inputs = document.querySelectorAll("input");
 const todosHtml = initializeTodosHtml();
-let todosJson = {"sets": [], "sauts": [], "programme": [], "moitie_de_programme": [], "pirouettes": []};
+let todosJson = {"sets": [], "sauts": [], "pirouettes": [], "moitie_de_programme": [], "programmes": []};
 const deleteAllButton = document.querySelectorAll(".delete-all");
 const selects = document.querySelectorAll("select");
 const changePageButton = document.querySelectorAll(".change-page-button");
@@ -59,12 +59,15 @@ validationButton.addEventListener("click", () => {
     i++;
   });
   temp_elements[i] = stsqchsq.filter((input) => input.checked).map(input => input.value);
-
+  day = new Date().getDate()
+  if (day < 10) {day = "0" + day}
+  month = new Date().getMonth() + 1
+  if (month < 10) {month = "0" + month}
   fetch(window.location.href, 
     {method: 'POST',
      headers: {'Content-Type': 'application/json'},
      body: JSON.stringify({
-      date: new Date().getDate() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getFullYear(),
+      date: day + '-' + month + '-' + new Date().getFullYear(),
       elements: temp_elements,
       id_teams: selected_teams,
       id_users: selected_users
@@ -94,7 +97,7 @@ validationButton.addEventListener("click", () => {
 
 function initializeTodosHtml() {
   let todosHtml = document.querySelectorAll(".todos");
-  return {"sets": todosHtml[0], "sauts": todosHtml[1], "programme": todosHtml[2], "moitie_de_programme": todosHtml[3], "pirouettes": todosHtml[4]};
+  return {"sets": todosHtml[0], "sauts": todosHtml[1], "pirouettes": todosHtml[2], "moitie_de_programme": todosHtml[3], "programmes": todosHtml[4]};
 }
 
 function getTodoHtml(todo, index) {

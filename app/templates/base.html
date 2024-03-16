@@ -1,6 +1,7 @@
 <!doctype html>
 <head>
     <title>{% block title %}{% endblock %} SkateFlow</title>
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     
@@ -15,22 +16,29 @@
                 <div id="user">
                     <img src="{{ url_for('static', filename='img/user_.png') }}" class="user_img">
                     <div>
-                        <li><a href="{{url_for('user.show_profile')}}"><h2 style="color: black;">{{ g.user['username'] }}</h2></a></li>
+                        <li><a href="{{url_for('user.show_profile')}}"><h2 style="color: #6f6f6f;">{{ g.user['username'] }}</h2></a></li>
                     </div>
                 </div>
-                <div>
-                    <ul>
-                        <li style="margin-left: 50%;"><a href="{{url_for('home.landing_page')}}" style="color: black;"><p class="side-nav-text"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0,0,256,256">
+                <div class="bouton-nav">
+                    <div class="bouton-barre">
+                       <a href="{{url_for('home.landing_page')}}" ><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25" height="25" viewBox="0,0,256,256">
                             <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(8.53333,8.53333)"><path d="M2.5,28.5v-17.221l12.498,-7.692l12.502,7.692v17.221z" fill="#ffffff"></path><path d="M14.998,4.174l12.002,7.385v16.441h-24v-16.441l11.998,-7.385M14.998,3l-12.998,8v18h26v-18l-13.002,-8z" fill="#e6e6e6"></path><path d="M3,25h24v3h-24z" fill="#f2f2f2"></path><path d="M14.998,4.644l-13.498,8.307v-3.056l13.498,-8.308l13.502,8.308v3.057z" fill="#fbd1e2"></path><path d="M14.998,2.174l13.002,8v1.883l-12.478,-7.678l-0.524,-0.322l-0.524,0.323l-12.474,7.676v-1.882l12.998,-8M14.998,1l-13.998,8.615v4.231l13.998,-8.615l14.002,8.615v-4.231l-14.002,-8.615z" fill="#f4bed4"></path><g><path d="M11.5,16.5h7v12h-7z" fill="#ffeb9c"></path><path d="M18,17v11h-6v-11h6M19,16h-8v13h8v-13z" fill="#ffdc69"></path></g><path d="M16.5,22c-0.27614,0 -0.5,0.22386 -0.5,0.5c0,0.27614 0.22386,0.5 0.5,0.5c0.27614,0 0.5,-0.22386 0.5,-0.5c0,-0.27614 -0.22386,-0.5 -0.5,-0.5z" fill="#ffdc69"></path></g></g>
-                            </svg></p></li>
-                          
-                    </ul>
-                    <ul>
-                        <li style="width: 70px;margin-top:560%;margin-left: 50%;"><a href="/auth/logout" style="color: #fdfdfd;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            </svg><p class="side-nav-text">acceuil</p>
+                    </a></div>
+                    <img src="{{ url_for('static', filename='img/patineur1.png') }}" style="width: 110%;margin-left: 50px;" >
+                    <img src="{{ url_for('static', filename='img/patineurs1.png') }}" style="width: 110%;margin-left: 50px;" >
+
+                    <img src="{{ url_for('static', filename='img/patineur2.png') }}" style="width: 110%;margin-left: 25px;" >
+
+                    <div class="bouton-barre">
+
+                        <a href="/auth/logout" style="color: #6f6f6f;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="pink" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M5 12h13M12 5l7 7-7 7"/>
                           </svg>
                           <p> Log Out</p></a>
-                    </ul>
+                        
+                    </div>
+
                 </div>
             </div>
 

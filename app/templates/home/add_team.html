@@ -3,6 +3,7 @@
 {% block content %}
 <script defer type="text/javascript" src="{{url_for('static', filename='js/random.js')}}"></script>
 <script defer type="text/javascript" src="{{url_for('static', filename='js/search_team-page.js')}}"></script>
+<script defer type="text/javascript" src="{{url_for('static', filename='js/create_and_update_teams.js')}}"></script>
 
 <div class="container_add">
     <h1 style="color: #fdfdfd;margin-left: 5%;font-size:230%;margin-top: 3%;">Equipes:</h1>
@@ -16,13 +17,19 @@
                 <div class="name_team">
                     <h1>Nom de l'équipe :</h1>
                     <div class="add_name">
-                        <input type="text" placeholder="nom" name="add_name" id="add_name" required>
+                        <input type="text" placeholder="nom" name="add_name" id="team_name_input" required>
+                    </div>
+                    <div class="comp_team">
+                        
                     </div>
                 </div> 
                 <div class="sport_team">
                     <h1>Ajouter un participant:</h1>
                     <div class="add_sport">
-                        <input type="text" placeholder="username" name="add_sport" id="add_sport">
+                        <input type="text" placeholder="username" name="add_sport" id="student_username_input">
+                    </div>
+                    <div class="student_div">
+
                     </div>
                 </div>
                 <div class="button_space">
@@ -30,7 +37,7 @@
                         <a href="{{ url_for('home.team_prof') }}" class="back-link" > <- retour aux équipes</a> 
                     </div>
                     <div class="terminer_equipe">
-                        <input type="submit" class="finished-btn" value="Terminer">
+                        <input type="submit" class="finished-btn" value="Terminer" id="send_button">
                     </div>
                 </div>    
         

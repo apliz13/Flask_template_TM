@@ -29,7 +29,7 @@
       <div class="container_1">
         <h1 style="padding: 1vh;color: #FBBECA;">sets de sauts</h1>
         {% for set in sets %}
-            <div class="teamCard">
+            <div class="todo">
                 <h2>{{set.name}}</h2>
             </div>
             {% endfor %}
@@ -37,42 +37,44 @@
       <div class="container_1">
         <h1 style="padding: 1vh;color: #FBBECA;">sauts</h1>
         {% for saut in sauts %}
-            <div class="teamCard">
+            <div class="todo">
                 <h2>{{saut.name}}</h2>
             </div>
             {% endfor %}
       </div>
       <div class="container_1">
-        <h1 style="padding: 1vh;color: #FBBECA;">programme</h1>
+        <h1 style="padding: 1vh;color: #FBBECA;">programmes</h1>
         {% for prog in progs %}
-            <div class="teamCard">
+            <div class="todo">
                 <h2>{{prog.name}}</h2>
             </div>
             {% endfor %}
       </div>
       <div class="container_1">
-        <h1 style="padding: 1vh;color: #FBBECA;">moitié de prog.</h1>
+        <h1 style="padding: 1vh;color: #FBBECA;">moitiés de prog.</h1>
         {% for moitie in moities %}
-            <div class="teamCard">
+            <div class="todo">
                 <h2>{{moitie.name}}</h2>
             </div>
             {% endfor %}
       </div>
       <div class="container_2">
         <div class="container_3">
-        <h1 style="padding: 1vh;color: #FBBECA;">pirouette</h1></div>
+        <h1 style="padding: 1vh;color: #FBBECA;">pirouettes</h1>
         {% for spin in spins %}
-            <div class="teamCard">
+            <div class="todo">
                 <h2>{{spin.name}}</h2>
             </div>
             {% endfor %}
+          </div>
         <div class="container_3">
-        <h1 style="padding: 1vh;color: #FBBECA;">StSq et ChSq</h1></div>
+        <h1 style="padding: 1vh;color: #FBBECA;">séquences</h1>
         {% for sequence in sequences %}
-            <div class="teamCard">
+            <div class="todo">
                 <h2>{{sequence.name}}</h2>
             </div>
             {% endfor %}
+          </div>
       </div>
     </div>
     

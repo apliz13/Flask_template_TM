@@ -36,9 +36,9 @@
         
         </div>
         <div class="container_1">
-        <h1 style="padding: 1vh;color: #fdfdfd;">programme</h1>
+        <h1 style="padding: 1vh;color: #fdfdfd;">pirouettes</h1>
         <div class="input-container">
-            <input id="programme" class="todo-input" placeholder="Entrez">
+            <input id="pirouettes" class="todo-input" placeholder="Entrez">
           </div>
           <div class="filters">
             <div class="delete-all">Effacer tout</div>
@@ -63,19 +63,13 @@
         </div>
         <div class="container_2">
         <div class="container_3">
-            <h1 style="padding: 1vh;color: #fdfdfd;">pirouette</h1>
+            <h1 style="padding: 1vh;color: #fdfdfd;">programme</h1>
 
-            <select class="dropdown_menu" name="pirouette" id="pirouettes">
+            <select class="dropdown_menu" name="programmes" id="programmes">
                 <option value=""> choisir:</option>
-                <option value="pirouette du long">pirouette du long</option>
-                <option value="pirouette du court">pirouette du court</option>
-                <option value="pirouette simple">pirouette simple</option>
-                <option value="pirouette sautee">pirouette sautée</option>
-                <option value="pirouette combinee">pirouette combinée</option>
-                <option value="pirouette sautee combinee">pirouette sautée combinée</option>
-                <option value="pirouette debout">pirouette debout</option>
-                <option value="pirouette assise">pirouette assise</option>
-                <option value="pirouette allongee">pirouette allongée</option>
+                <option value="long">long</option>
+                <option value="court">court</option>
+ 
                 
             </select>
             <div class="todos-container">
@@ -114,7 +108,7 @@
       </div>
       <div class="container_team_cards_big">
           {% for team in teams %}
-          <div class="teamCard_big2" teamid={{team.id_teams}}>
+          <div class="teamCard_big2" teamid={{team.id_teams}} style="height: 25%;">
               <h2>{{team.name}}</h2>
           </div>
           {% endfor %}
