@@ -16,7 +16,7 @@ python -m venv <VIRTUAL-ENVIRONMENT-NAME>
 python3 -m venv <VIRTUAL-ENVIRONMENT-NAME>
 ```
 
-3. Activate the virtual environment
+2. Activate the virtual environment
   * Windows users:
 ```bash
 <VIRTUAL-ENVIRONMENT-NAME\Scripts\activate
@@ -26,12 +26,12 @@ python3 -m venv <VIRTUAL-ENVIRONMENT-NAME>
 source <VIRTUAL-ENVIRONMENT-NAME>/bin/activate
 ```
 
-5. Install the dependencies that are in requirements.txt
+3. Install the dependencies that are in requirements.txt
 ```bash
 pip install -r requirements.txt
 ```
 
-7. Run the project
+4. Run the project
 ```bash
 python -m flask run --debug
 ```
