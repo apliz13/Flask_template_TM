@@ -1,8 +1,6 @@
 {% extends 'base_prof.html' %}
 
 {% block content %}
-<script defer type="text/javascript" src="{{url_for('static', filename='js/random.js')}}"></script>
-<script defer type="text/javascript" src="{{url_for('static', filename='js/search_team-page.js')}}"></script>
 <script defer type="text/javascript" src="{{url_for('static', filename='js/create_and_update_teams.js')}}"></script>
 
 <div class="container_add">
@@ -27,6 +25,9 @@
                     <h1>Ajouter un participant:</h1>
                     <div class="add_sport">
                         <input type="text" placeholder="username" name="add_sport" id="student_username_input">
+                    </div>
+                    <div id="student_comp_div">
+
                     </div>
                     <div class="student_div">
 

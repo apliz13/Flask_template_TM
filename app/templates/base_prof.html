@@ -13,7 +13,7 @@
             <div id="user">
                 <img src="{{ url_for('static', filename='img/user_.png') }}" class="user_img">
                 <div>
-                    <li style="list-style-type: none;"><a href="{{url_for('user.show_profile_prof')}}"><h2>{{ g.user['username'] }}</h2></a></li>
+                    <li style="list-style-type: none;"><a href="{{url_for('user.show_profile')}}"><h2>{{ g.user['username'] }}</h2></a></li>
                 </div>
             </div>
             <div class="nav_link">

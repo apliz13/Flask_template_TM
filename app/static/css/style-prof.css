@@ -907,6 +907,28 @@ option {
     border: 3px solid #fdfdfd;
 }
 
+.comp_team_card{
+    width: 150px;
+    height: 30px;
+    border-radius: 15px;
+    border: solid 3px #ffb7b2;
+    background-color: #FDFDFD;
+    color: #ffb7b2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.comp_student_card{
+    width: 150px;
+    height: 30px;
+    border-radius: 15px;
+    border: solid 3px #ffb7b2;
+    background-color: #FDFDFD;
+    color: #ffb7b2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .selected {
     background-color:#febcc9;

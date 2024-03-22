@@ -312,3 +312,37 @@ def get_my_teams():
     teams = db.execute(teams_query, (user_id,)).fetchall()
     db.close()
     return jsonify(dict(teams))
+
+@home_bp.route('/get_similar_student/<student_surname>')
+def get_similar_student(student_surname):
+    db = get_db()
+    
+    teams_query = """
+        SELECT users.username
+        FROM users
+        WHERE users.username LIKE ?
+        LIMIT 5
+    """
+    data = db.execute(teams_query,("%" + student_surname + "%",)).fetchall()
+    db.close()
+    similar_student = [" "]*5
+    for i, row in enumerate(data):
+        similar_student[i] = row["username"]
+    return jsonify(similar_student)
+
+@home_bp.route('/get_student_of_the_team/<team_id>')
+def get_student_of_the_team(team_id):
+    db = get_db()
+
+    query = """
+        SELECT users.username
+        FROM users 
+        INNER JOIN teams_composition ON teams_composition.id_users = users.id_users
+        WHERE teams_composition.id_teams = ?
+        """
+    data = db.execute(query,(team_id)).fetchall()
+    students = []
+    for row in data:
+        students.append(row["username"])
+    return jsonify(students)
+    
