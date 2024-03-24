@@ -296,6 +296,7 @@ body{
 .container_team_cards_big{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
     height: 60%;
     width: 100%;
     margin-top: 5%;
@@ -335,7 +336,7 @@ body{
 }
 
 .teamCard_big{
-    height: 50%;
+    height: 70%;
     width: 80%;
     background-color: #FDFDFD;
     border-radius: 15px;
@@ -438,12 +439,11 @@ background: none;
 
 .sport_team{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
     color: #6f6f6f;
-    border-bottom: 2px #6f6f6f solid;
-    height: 48%;
+    height: 32%;
     width: 90%;
     
 }
@@ -467,6 +467,7 @@ background: none;
     padding: 0 15px;
     margin-left: 3%;
     margin-top: 7px;
+    margin-bottom: 1%;
 }
 
 .add_name input{
@@ -487,8 +488,8 @@ background: none;
     align-items: center;
     border-radius: 10px;
     padding: 0 15px;
-    margin-left: 3%;
     margin-top: 7px;
+    margin-bottom: 1%;
 }
 
 
@@ -550,7 +551,7 @@ background: none;
 }
 
 .back-link{
-    color: #fdfdfd;
+    color: #ff7c7c;
 }
 
 .back-link:hover{
@@ -692,6 +693,7 @@ ul, li {
     align-items: center;
     cursor: pointer;
     margin-left: 20%;
+    padding: 10%;
 }
 
 .validation-button{
@@ -733,8 +735,6 @@ ul, li {
   padding: 0;
   box-sizing: border-box;
 }
-
-
 
 .input-container {
   display: flex;
@@ -912,30 +912,75 @@ option {
 .comp_team_card{
     width: 150px;
     height: 30px;
-    border-radius: 15px;
-    border: solid 3px #ffb7b2;
-    background-color: #FDFDFD;
+    border-radius: 10px;
+    background-color: #fdfdfdab;
     color: #ffb7b2;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .comp_student_card{
-    width: 150px;
-    height: 30px;
-    border-radius: 15px;
-    border: solid 3px #ffb7b2;
-    background-color: #FDFDFD;
-    color: #ffb7b2;
+    width: 90%;
+    height: 20%;
+    border-radius: 10px;
+    background-color: #febcc999;
+    color: #6f6f6f;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 3%;
+}
+
+.student_div{
+    width: 63%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    overflow-y: scroll;
+    min-height: 90%;
+}
+
+.container_comp-stud{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: row;
+}
+
+#student_comp_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 90%;
+    width: 33%;
+    overflow-y: scroll;
+
 }
 
 .selected {
     background-color:#febcc9;
 }
 
+.container-add-team{
+    height: 100%;
+    width: 100%;
+    padding-left: 5%;
+    padding-top: 2%;
+}
+
+.student_card{
+    width: 80%;
+    height: 80%;
+    border-radius: 10px;
+    background-color: #fdfdfd82;
+    color: #febcc9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3%;
+    margin-left: 3%;
+}
 
 .text-input {
     background: #e6e6e6;
@@ -981,8 +1026,69 @@ option {
     color: #0f0f0f;
 }
 
+.body_profil{
+    
+    height: 100vh;
+    /*background-image: linear-gradient(to right top, #d7f3f2, #bdebf8, #afe0ff, #b7d0ff, #d3bbff, #e8aeec, #f8a3d3, #ff9bb7, #ffa2a3, #ffae8d, #ffc07c, #ffd372);*/
+    background-image: radial-gradient(circle, #fed032, #ffc259, #ffb97c, #ffb59a, #ffb7b2, #febcc9, #f6c3de, #ebcced, #d9d9fb, #cce4fd, #ccedf8, #d7f3f2);
+}
 
+.login {
+    grid-area: login;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: white;
+}
 
+.design {
+    grid-area: design;
+    display: none;
+    position: relative;
+}
+
+.container_auth {
+    align-items: center;
+    justify-content: center;
+    width: 50vw;
+    height: 60vh;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-areas: "login";
+    box-shadow: 0 0 17px 10px rgb(0 0 0 / 5%);
+    border-radius: 20px;
+    background: white;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    
+}
+
+@media (min-width: 768px) {
+    .container_auth {
+        grid-template-columns: 50% 50%;
+        grid-template-areas: "design login";
+    }
+
+    .design {
+        display: block;
+    }
+}
+
+.no-botton{
+    margin-left: 10px;
+    color: #6f6f6f;
+    background: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    content: "X";
+}
 
 .hide{
     display: none;

@@ -5,6 +5,8 @@
 
 <div class="container_add">
     <h1 style="color: #fdfdfd;margin-left: 5%;font-size:230%;margin-top: 3%;">Equipes:</h1>
+    <h1 style="color: #fdfdfd;margin-left: 5%;font-size:230%;margin-top: 3%; margin-bottom:2% ;">Taper le nom d'une <span style="color: #d4ddfc;">équipe</span> pour pouvoir la modifier:</h1>
+
 
     <div class="add_teams">
 
@@ -21,27 +23,32 @@
                         
                     </div>
                 </div> 
-                <div class="sport_team">
-                    <h1>Ajouter un participant:</h1>
-                    <div class="add_sport">
-                        <input type="text" placeholder="username" name="add_sport" id="student_username_input">
+                <div class="container-add-team">
+                    <div class="sport_team">
+                        <h1>Ajouter un participant:</h1>
+                        <div class="add_sport">
+                            <input type="text" placeholder="username" name="add_sport" id="student_username_input">
+                        </div>
                     </div>
-                    <div id="student_comp_div">
+                    <div class="container_comp-stud">
+                        <div id="student_comp_container">
 
-                    </div>
-                    <div class="student_div">
 
+                        </div>
+                        <div class="student_div">
+                        </div>
                     </div>
                 </div>
+                
                 <div class="button_space">
                     <div class="retour_equipe">
                         <a href="{{ url_for('home.team_prof') }}" class="back-link" > <- retour aux équipes</a> 
                     </div>
                     <div class="terminer_equipe">
-                        <input onclick="submit()" placeholder="Terminer" class="finished-btn" id="send_button">
+                        <input onclick="submit()" placeholder="Terminer" class="finished-btn" id="send_button" style="border-radius: 10px;">
                     </div>
                 </div>    
-        
+
             </div>
 
     

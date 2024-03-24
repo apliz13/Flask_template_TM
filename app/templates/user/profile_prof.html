@@ -2,14 +2,36 @@
 
 
 {% block content %}
-    <body class="body_profil">
-      <div class="container_index_profil">
-        <h2 class="titre_profil">Mon profil</h2>
-        <ul>
-          <li>Username: {{g.user.username}}</li>
-          <li>First name: {{g.user.first_name}}</li>
-          <li>Last name: {{g.user.last_name}}</li>
-        </ul>
-      </div>
-    </body>
+<body class="body_profil">
+  <form method="post"> 
+    <div>
+
+
+
+  <div class="container_auth">
+    <div class="design">
+        <img src="{{ url_for('static', filename='img/logo.png') }}" style="width: 100%;margin-left: 3%;" >
+    </div>
+<div class="login">
+
+
+    <h3 style="font-size: larger;" class="title">mon <span style="color: #ebcced;font-weight: bold;">profil</span></h3>
+
+    <div class="text-input">
+      <h5 for="username" style="color: #6f6f6f;">Username: </h5>
+        <input type="text" placeholder="{{g.user.username}}" name="username" id="username" required >
+    </div>
+
+    <div class="text-input">
+      <h5 for="first_name" style="color: #6f6f6f;">Prénom: </h5>
+        <input type="text" placeholder="{{g.user.first_name}}" name="first_name" id="first_name" required>
+    </div>
+
+    <div class="text-input">
+      <h5 for="last_name" style="color: #6f6f6f;">Nom: </h5>
+        <input type="text" placeholder="{{g.user.last_name}}" name="last_name" id="last_name" required>
+    </div>
+</div>
+    
+</body>
 {% endblock %}

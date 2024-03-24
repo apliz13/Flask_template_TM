@@ -71,12 +71,23 @@ def prof():
             INNER JOIN teams_composition ON teams_appartenance.id_teams = teams_composition.id_teams
 			INNER JOIN users ON teams_composition.id_users = users.id_users
             WHERE id_coachs = ?
+            ORDER BY users.first_name, users.last_name
         """
     eleves = db.execute(eleves_query, (int(user_id),)).fetchall()
 
+    students = []
+    current_student = {"first_name": "", "last_name":"", "id_teams": []}
+    for eleve_row in eleves:
+        if eleve_row["first_name"] != current_student["first_name"] or eleve_row["last_name"] != current_student['last_name']:
+            if current_student["first_name"] != "":
+                current_student["id_teams"] = "-".join(current_student["id_teams"])
+                students.append(current_student)
+            current_student = {"first_name": eleve_row["first_name"], "last_name": eleve_row["last_name"], "id_teams":[str(eleve_row["id_teams"])]}
+        else:
+            current_student["id_teams"].append(str(eleve_row["id_teams"]))
 
     db.close()
-    return render_template('home/index_prof.html',teams=teams, eleves=eleves)
+    return render_template('home/index_prof.html',teams=teams, eleves=students)
 
 @home_bp.route('/send_team', methods=('GET', 'POST'))
 def send_team():
@@ -195,9 +206,9 @@ def add_training():
                 FROM teams_appartenance
                 INNER JOIN teams_composition ON teams_appartenance.id_teams = teams_composition.id_teams
                 INNER JOIN users ON teams_composition.id_users = users.id_users
-                
+                WHERE teams_appartenance.id_coachs = ?
             """
-        eleves = db.execute(eleves_query).fetchall() 
+        eleves = db.execute(eleves_query,(user_id,)).fetchall() 
         return render_template('home/add_training.html',teams=teams, eleves=eleves)
     
     elif request.method == 'POST':
@@ -338,7 +349,7 @@ def get_student_of_the_team(team_id):
         INNER JOIN teams_composition ON teams_composition.id_users = users.id_users
         WHERE teams_composition.id_teams = ?
         """
-    data = db.execute(query,(team_id)).fetchall()
+    data = db.execute(query,(team_id,)).fetchall()
     students = []
     for row in data:
         students.append(row["username"])

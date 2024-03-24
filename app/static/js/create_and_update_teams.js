@@ -7,7 +7,7 @@ let selected_team_student_array = [];
 const team_name_input = document.getElementById("team_name_input");
 const team_comp_HTML = document.getElementsByClassName("comp_team");
 const student_username_input = document.getElementById("student_username_input");
-const student_comp_HTML = document.getElementById("student_comp_div")
+const student_comp_HTML = document.getElementById("student_comp_container")
 const student_div_HTML = document.getElementsByClassName("student_div");
 
 
@@ -89,7 +89,7 @@ function add_this_student(student) {
     hide_students_completion();
 }
 function get_student_card(student) {
-    return `<div class="student_card"><span>${student}</span><button onclick="remove_this_student(this)">X</button></div>`;
+    return `<div class="student_card"><span>${student}</span><button class="no-botton" onclick="remove_this_student(this)">X</button></div>`;
 }
 function remove_this_student(button) {
     let student_username = button.previousSibling.textContent;
@@ -103,7 +103,7 @@ function show_selected_students() {
     student_div_HTML[0].innerHTML = selected_team_student_array.map(student => get_student_card(student)).join("");
 }
 async function get_selected_team_students_and_show(){
-    return fetch(`/get_similar_student/${selected_team}`).then(response => response.json()).then(usernames => {
+    return fetch(`/get_student_of_the_team/${selected_team}`).then(response => response.json()).then(usernames => {
         for (key in usernames){
             if (usernames[key] != " " && !selected_team_student_array.includes(usernames[key])){
             selected_team_student_array.push(usernames[key])
