@@ -130,20 +130,4 @@ def load_logged_in_user():
         g.user = db.execute('SELECT * FROM users WHERE id_users = ?', (user_id,)).fetchone()
 
 
-@auth_bp.route('/forgotten', methods=['GET', 'POST'])
-def forgotten_password():
-    
-    if request.method == 'POST':
 
-        msg=Message('Hello', sender='', recipients=[''])
-        msg.body = "Hello Flask message sent from Flask-Mail"
-        mail.send(msg)
-
-        db = get_db()
-        db.execute(
-            'UPDATE user SET status=? WHERE username=?',
-            ('', '{{g.user.username}}')
-        )
-
-
-    return 'Sent'

@@ -1,4 +1,3 @@
-
 const TeamCards = document.querySelectorAll('div.teamCard');
 const StudentCards = document.querySelectorAll('div.studentCard');
 
@@ -11,15 +10,14 @@ let studentString = "";
 
 let selectedTeam = null;
 
-TeamCards.forEach(card => {
 
+TeamCards.forEach(card => {
     const teamName = card.children[0].textContent.trim();
     const teamId = card.getAttribute("teamid");
 
     teams.push({ teamName: teamName, element: card, id: teamId });
 
     card.addEventListener("click", e => {
-
         selectedTeam = e.currentTarget.getAttribute("teamid");
         TeamCards.forEach(card => {
             card.classList.remove("activeTeam");
@@ -33,17 +31,13 @@ TeamCards.forEach(card => {
     });
 });
 
-
 StudentCards.forEach(card => {
-
     const studentFirstName = card.children[0].textContent.trim();
     const studentLastName = card.children[1].textContent.trim();
     const teamId = card.getAttribute("teamid");
 
-
     students.push({ studentFirstName: studentFirstName, studentLastName: studentLastName, element: card, teamId: teamId });
 });
-
 
 searchInputTeam.addEventListener("input", e => {
     const value = e.target.value.toLowerCase();
@@ -54,12 +48,10 @@ searchInputTeam.addEventListener("input", e => {
     });
 });
 
-
 searchInputStudent.addEventListener("input", e => {
     studentString = e.target.value.toLowerCase();
     students.forEach(student => {
-        const isVisible = ((selectedTeam == null) || (student.teamId == selectedTeam)) && (student.studentFirstName.toLowerCase().includes(studentString) || student.studentLastName.toLowerCase().includes(studentString));
+        const isVisible = ((selectedTeam == null) || (student.teamId == selectedTeam)) && (student.studentFirstName.toLowerCase().includes(studentString) || student.studentLastName.toLowerCase().includes(studentString) || studentString === "");
         student.element.classList.toggle("hide", !isVisible);
     });
 });
-

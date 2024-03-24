@@ -9,7 +9,7 @@ const team_comp_HTML = document.getElementsByClassName("comp_team");
 const student_username_input = document.getElementById("student_username_input");
 const student_comp_HTML = document.getElementById("student_comp_div")
 const student_div_HTML = document.getElementsByClassName("student_div");
-const send_button = document.getElementById("send_button");
+
 
 
 init_event_listeners();
@@ -36,9 +36,6 @@ function init_event_listeners() {
         setTimeout(()=>{if (student_surname == student_username_input.value && student_surname != "") {
             show_students_completion();
         }}, 1000);
-    });
-    send_button.addEventListener("click", async function() {
-        
     });
 }
 
@@ -108,8 +105,37 @@ function show_selected_students() {
 async function get_selected_team_students_and_show(){
     return fetch(`/get_similar_student/${selected_team}`).then(response => response.json()).then(usernames => {
         for (key in usernames){
+            if (usernames[key] != " " && !selected_team_student_array.includes(usernames[key])){
             selected_team_student_array.push(usernames[key])
-        }
-    }).then(show_selected_students())
+        }}
+    }).then(()=>show_selected_students())
 
+}
+function submit() {
+    if (selected_team != null && selected_team_student_array.length > 0) {
+        fetch("/update_teams", {
+            method: "POST",
+            body: JSON.stringify({type:"update",data:{team_id: selected_team, students: selected_team_student_array}}),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(response => response.json()).then(response => {
+            if (response.status == "ok") {
+                window.location.replace("/teams");
+            }
+        });
+    }
+    else if(team_name_input.value != "" && selected_team_student_array.length > 0){
+        fetch("/update_teams", {
+            method: "POST",
+            body: JSON.stringify({type:"create",data:{team_name: team_name_input.value, students: selected_team_student_array}}),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(response => response.json()).then(response => {
+            if (response.status == "ok") {
+                window.location.replace("/teams");
+            }
+        });
+    }
 }

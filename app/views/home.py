@@ -71,9 +71,9 @@ def prof():
             INNER JOIN teams_composition ON teams_appartenance.id_teams = teams_composition.id_teams
 			INNER JOIN users ON teams_composition.id_users = users.id_users
             WHERE id_coachs = ?
-            
         """
     eleves = db.execute(eleves_query, (int(user_id),)).fetchall()
+
 
     db.close()
     return render_template('home/index_prof.html',teams=teams, eleves=eleves)
@@ -163,8 +163,6 @@ def add_team():
                 db.commit()
                 return redirect(url_for("home.add_team"))
             except db.IntegrityError:
-
-                
                 error = f"User {name} is already registered."
                 flash(error)
                 return redirect(url_for("home.add_team"))
@@ -345,4 +343,61 @@ def get_student_of_the_team(team_id):
     for row in data:
         students.append(row["username"])
     return jsonify(students)
+
+@home_bp.route('/update_teams', methods=['POST'])
+def update_teams():
+    if request.method == 'POST':
+        userid = session['user_id']
+        data = request.get_json()
+        db = get_db()
+
+        if data["type"] == "update":
+            coachs = db.execute("SELECT teams_appartenance.id_coachs FROM teams_appartenance WHERE teams_appartenance.id_teams = ?",(data["data"]["team_id"],)).fetchall()
+            is_coach = False
+            for coach_id in coachs:
+                if coach_id['id_coachs'] == userid:
+                    is_coach = True
+                    break
+            if not is_coach:
+                db.close()
+                return "You are not the coach of this team", 403
+            selected_students = set()
+            for student in data["data"]["students"]:
+                new_student = db.execute("SELECT users.id_users FROM users WHERE users.username = ?",(student,)).fetchone()
+                if not new_student:
+                    db.close()
+                    return f"Student {student} does not exist", 404
+                selected_students.add(new_student['id_users'])
+            old_students_data = db.execute("SELECT teams_composition.id_users FROM teams_composition WHERE teams_composition.id_teams = ?",(data["data"]["team_id"],)).fetchall()
+            old_students = set()
+            for row in old_students_data:
+                old_students.add(row['id_users'])
+            to_add = selected_students - old_students
+            to_remove = old_students - selected_students
+            for student in to_add:
+                db.execute("INSERT INTO teams_composition (id_teams, id_users) VALUES (?,?)",(data["data"]["team_id"],student))
+            for student in to_remove:
+                db.execute("DELETE FROM teams_composition WHERE teams_composition.id_teams = ? AND teams_composition.id_users = ?",(data["data"]["team_id"],student))
+            db.commit()
+            db.close()
+            return "ok", 200
+        
+        elif data["type"] == "create":
+            selected_students = set()
+            for student in data["data"]["students"]:
+                new_student = db.execute("SELECT users.id_users FROM users WHERE users.username = ?",(student,)).fetchone()
+                if not new_student:
+                    db.close()
+                    return f"Student {student} does not exist", 404
+                selected_students.add(new_student['id_users'])
+            db.execute("INSERT INTO teams (name) VALUES (?)",(data["data"]["team_name"],))
+            db.commit()
+            db.execute("INSERT INTO teams_appartenance (id_teams, id_coachs) VALUES ((SELECT sqlite_sequence.seq FROM sqlite_sequence WHERE sqlite_sequence.name = 'teams'),?)",(userid,))
+            db.commit()
+            team_id = db.execute("SELECT sqlite_sequence.seq FROM sqlite_sequence WHERE sqlite_sequence.name = 'teams'").fetchone()['seq']
+            for student in selected_students:
+                db.execute("INSERT INTO teams_composition (id_teams, id_users) VALUES (?,?)",(team_id,student))
+            db.commit()
+            db.close()
+            return "ok", 200
     

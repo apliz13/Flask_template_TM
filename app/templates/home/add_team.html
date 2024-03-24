@@ -8,7 +8,7 @@
 
     <div class="add_teams">
 
-            <form method="post" class="container_white">
+            <div class="container_white">
                 <div class="mod_team">
                     <h1> + Ajouter une équipe:</h1>
                 </div>
@@ -38,11 +38,11 @@
                         <a href="{{ url_for('home.team_prof') }}" class="back-link" > <- retour aux équipes</a> 
                     </div>
                     <div class="terminer_equipe">
-                        <input type="submit" class="finished-btn" value="Terminer" id="send_button">
+                        <input onclick="submit()" placeholder="Terminer" class="finished-btn" id="send_button">
                     </div>
                 </div>    
         
-            </form>
+            </div>
 
     
     </div>
