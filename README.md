@@ -31,7 +31,9 @@ source <VIRTUAL-ENVIRONMENT-NAME>/bin/activate
 pip install -r requirements.txt
 ```
 
-4. Run the project
+4. Creat a config.py file that has the same variables as the config_exemple.py file
+
+5. Run the project
 ```bash
 python -m flask run --debug
 ```
