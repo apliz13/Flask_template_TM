@@ -1,9 +1,9 @@
 
-const TeamCards = document.querySelectorAll('div.teamCard');
-const StudentCards = document.querySelectorAll('div.teamCard_big2');
+const TeamCards = document.querySelectorAll('div.teamCard_big2');
+const StudentCards = document.querySelectorAll('div.studentCard');
 
-const searchInputTeam = document.querySelector('[data-search]');
-const searchInputStudent = document.querySelector('[data-search-big]');
+const searchInputTeam = document.querySelector('#search-team');
+const searchInputStudent = document.querySelector('#search-student');
 
 let teams = [];
 let students = [];
