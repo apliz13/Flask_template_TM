@@ -1,7 +1,7 @@
 #SkateFlow
 
 ## Author
-ALizée Petrini, Collège du Sud.
+Alizée Petrini, Collège du Sud.
 
 ## Description
 The current directory is as a foundational Flask template connected to an SQLite database, serving as a starting point for a web application named SkateFlow. this app aim to create a training session planning maker for figure skating coaches and their students.
