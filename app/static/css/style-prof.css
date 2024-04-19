@@ -28,7 +28,7 @@ body{
     background-color: #FDFDFD;
     height: 98vh;
     margin-left: 1vh;
-    width: 20vw;
+    width: 22vw;
 }
  
 
@@ -197,10 +197,7 @@ body{
 }
 
 .container_team_cards{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+
     height: 80vh;
     width: 70%;
     margin-top: 5%;
@@ -653,7 +650,7 @@ ul, li {
     margin-left: 2%;
     margin-bottom: 2%;
     width: 88%;
-    height: 10%;
+    height: 70px;
 
 }
 
@@ -956,6 +953,19 @@ option {
     width: 33%;
     overflow-y: scroll;
 
+}
+
+
+
+#student_comp_container::-webkit-scrollbar {
+width: 10px;
+height: 10px; 
+}
+#student_comp_container::-webkit-scrollbar-thumb { 
+background: pink;
+}
+#student_comp_container::-webkit-scrollbar-track { 
+background: none;
 }
 
 .selected {

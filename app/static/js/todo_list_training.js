@@ -73,7 +73,10 @@ validationButton.addEventListener("click", () => {
       id_users: selected_users
       }
       )
-    })});
+    })
+    window.location.replace("/prof");
+  
+  });
 
   TEAMS.forEach(team => {team.addEventListener("click", e => {
     if (e.currentTarget.classList.contains("selected")) {
