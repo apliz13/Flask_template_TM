@@ -2,7 +2,6 @@ import os
 from flask import Flask
 from app.utils import *
 from flask_mail import Mail
-
 # Importation des blueprints de l'application
 # Chaque blueprint contient des routes pour l'application
 from app.views.home import home_bp

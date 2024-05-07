@@ -132,7 +132,7 @@
             {% for eleve in eleves %}
                 {% set full_name = eleve.first_name ~ ' ' ~ eleve.last_name %}
                 {% if full_name not in seen_names %}
-                    <div class="studentCard" teamid={{eleve.id_teams}}>
+                    <div class="studentCard" studentid={{eleve.id_users}}>
                         <h2>{{eleve.first_name}}</h2>
                         <h2 style="margin-left: 1%">{{eleve.last_name}}</h2>
                     </div>

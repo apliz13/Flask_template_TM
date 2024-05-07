@@ -26,6 +26,7 @@ def landing_page():
                 id_team_of_user = None
             today_date = datetime.now().strftime("%d-%m-%Y")
             
+
             training_data = db.execute('''SELECT elements.name, elements.type
                 FROM elements
                 INNER JOIN trainings_compositions ON elements.id_elements = trainings_compositions.id_element
@@ -42,8 +43,8 @@ def landing_page():
                     sorted_data[last_type] = training_data[last_type_index:i]
                     last_type = element['type']
                     last_type_index = i
-                
-            return render_template('home/index.html', sets=sorted_data[0], sauts=sorted_data[1], progs=sorted_data[2], moities=sorted_data[3], spins=sorted_data[4], sequences=sorted_data[5])
+            sorted_data[last_type] = training_data[last_type_index:]
+            return render_template('home/index.html', sets=sorted_data[0], sauts=sorted_data[1], spins=sorted_data[2], moities=sorted_data[3], progs=sorted_data[4], sequences=sorted_data[5])
 
         elif session['type_user'] == 1:
             return render_template('home/index_prof.html')
@@ -55,7 +56,6 @@ def prof():
     # Affichage de la page principale de l'application pour les profs
     db = get_db()
     user_id = str(session['user_id'])
-    print(user_id)
     teams_query = """
             SELECT teams.name, teams.id_teams
             FROM teams
@@ -63,7 +63,6 @@ def prof():
             WHERE teams_appartenance.id_coachs = ?
         """
     teams = db.execute(teams_query, (int(user_id),)).fetchall()
-    print(teams)
 
     eleves_query = """
             SELECT users.first_name, users.last_name, teams_composition.id_teams
@@ -110,7 +109,6 @@ def send_team():
             WHERE teams_appartenance.id_coachs = ? AND users.id_users != ?
         """
     eleves = db.execute(eleves_query, (user_id,user_id,)).fetchall() 
-    print(eleves)
     return render_template('home/send_team.html',teams=teams, eleves=eleves)
 
 @home_bp.route('/send_student', methods=('GET', 'POST'))
@@ -231,7 +229,7 @@ def add_training():
         db.execute("INSERT INTO trainings (date) VALUES (?)",(dataJson['date'],))
         db.commit()
         id_training = db.execute("SELECT sqlite_sequence.seq FROM sqlite_sequence WHERE sqlite_sequence.name = 'trainings'").fetchone()['seq']
-        
+
         for team in dataJson['id_teams']:
             db.execute("INSERT INTO trainings_appartenance (id_trainings, id_teams) VALUES (?,?)",(id_training,team,))
         for user in dataJson['id_users']:

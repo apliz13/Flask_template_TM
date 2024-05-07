@@ -74,7 +74,7 @@ validationButton.addEventListener("click", () => {
       }
       )
     })
-    window.location.replace("/prof");
+   .finally(() =>  window.location.replace("/prof"));
   
   });
 

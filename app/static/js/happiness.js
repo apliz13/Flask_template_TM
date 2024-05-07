@@ -8,7 +8,7 @@ function fetchHappiness(){
     }).then(response => response.json()).then(data => {
         
 
-        if(data['satisfaction'] != null){
+        if(data['satisfaction'] != null && data['satisfaction'] != "None"){
         var object = document.getElementById(data['satisfaction']);
         object.classList.add("Active");
         }
