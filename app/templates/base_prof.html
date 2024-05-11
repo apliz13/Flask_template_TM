@@ -1,0 +1,68 @@
+<!doctype html>
+<head>
+    <title>{% block title %}{% endblock %} SkateFlow</title>
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style-prof.css') }}">
+    
+</head>
+
+<body>
+
+    {% if g.user %}
+        <div class="nav_prof">
+            <div id="user">
+                <img src="{{ url_for('static', filename='img/user_.png') }}" class="user_img">
+                <div>
+                    <li style="list-style-type: none;"><a href="{{url_for('user.show_profile_prof')}}"><h2>{{ g.user['username'] }}</h2></a></li>
+                </div>
+            </div>
+            <div class="nav_link">
+                <div class="action_line">
+                    <h3 style="color: #6f6f6f;margin-left: 5px;">Action:</h3>
+                </div>
+                <div class="alignement_nav">
+                    <div id="petit-carre3"></div>
+                    <a href="{{ url_for('home.prof') }}">home</a>
+                </div>
+                <div class="alignement_nav">
+                    <div id="petit-carre1"></div>
+                    <a href="{{ url_for('home.add_training') }}">création d'entrainement</a>
+                </div>
+                <div class="alignement_nav">
+                    <div id="petit-carre4"></div>
+                    <a href="{{ url_for('home.team_prof') }}">groupe</a>
+                </div>
+                <div class="alignement_nav">
+                    <div id="petit-carre5"></div>
+                    <a href="{{ url_for('home.add_team') }}">gestion de groupe</a>
+                </div>
+                <div class="alignement_nav">
+                    <div id="petit-carre2"></div>
+                    <a href="{{ url_for('auth.logout') }}">Logout</a>
+                </div>
+                
+                </div>
+                <img src="{{ url_for('static', filename='img/logo.png') }}" style="width: 80%;margin-left: 10%;margin-top: 20%;" >
+
+            </div>
+        </div>
+       
+
+    {% else %}
+            
+    {% endif %}
+
+    <section class="content">
+       
+        
+        {% for message in get_flashed_messages() %}
+            <div class="flash">{{ message }}</div>
+        {% endfor %}
+
+        {% block content %}{% endblock %}
+    </section>
+
+    <script defer type="text/javascript" src="{{url_for('static', filename='js/script.js')}}"></script>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  {% block title %}{% endblock %}
+{% endblock %}
+
+{% block content %}
+  
+    <form method="post"> 
+
+
+
+
+    <div class="container_auth">
+        <div class="design">
+            <img src="{{ url_for('static', filename='img/logo.png') }}" style="width: 100%;margin-left: 3%;" >
+        </div>
+    <div class="login">
+
+
+        <h3 class="title">inscription</h3>
+
+        <div class="text-input">
+            <input type="text" placeholder="username" name="username" id="username" required>
+        </div>
+
+        <div class="text-input">
+            <input type="password" placeholder="password" name="password" id="password" required>
+        </div>
+
+        <div class="text-input">
+            <input type="text" placeholder="first_name" name="first_name" id="first_name" required>
+        </div>
+
+        <div class="text-input">
+            <input type="text" placeholder="last_name" name="last_name" id="last_name" required>
+        </div>
+        
+        <div class="checkbox">   
+            <input style="cursor: pointer; margin: 5px;" type="checkbox" placeholder="prof" name="type_user" id="type_user">
+            <label for="type_user">je suis <span style="color:#F37891"> coach </span>!</label> 
+        </div>
+            
+        <button class="login-btn">GO!</button>
+
+        <div class="create">
+            <a href="{{ url_for('auth.login') }}">déjà inscris? <span style="color: #C4E6E5;">connecte toi !</span></a> 
+        </div>
+
+
+    </div>
+    </div>
+
+      
+      
+    </form>
+  
+{% endblock %}

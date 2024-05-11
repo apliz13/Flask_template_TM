@@ -1,0 +1,61 @@
+{% extends 'base_prof.html' %}
+
+{% block content %}
+<script defer type="text/javascript" src="{{url_for('static', filename='js/create_and_update_teams.js')}}"></script>
+
+<div class="container_add">
+    <h1 style="color: #fee6b0;margin-left: 5%;font-size:230%;margin-top: 3%;">Equipes:</h1>
+    <h1 style="color: #fdfdfd;margin-left: 5%;font-size:230%;margin-top: 3%; margin-bottom:2% ;">Taper le nom d'une <span style="color: #d4ddfc;">équipe</span> pour pouvoir la modifier:</h1>
+
+
+    <div class="add_teams">
+
+            <div class="container_white">
+                <div class="mod_team">
+                    <h1> + Ajouter une équipe:</h1>
+                </div>
+                <div class="name_team">
+                    <h1>Nom de l'équipe :</h1>
+                    <div class="add_name">
+                        <input type="text" placeholder="nom" name="add_name" id="team_name_input" required>
+                    </div>
+                    <div class="comp_team">
+                        
+                    </div>
+                </div> 
+                <div class="container-add-team">
+                    <div class="sport_team">
+                        <h1>Ajouter un participant:</h1>
+                        <div class="add_sport">
+                            <input type="text" placeholder="username" name="add_sport" id="student_username_input">
+                        </div>
+                    </div>
+                    <div class="container_comp-stud">
+                        <div id="student_comp_container">
+
+
+                        </div>
+                        <div class="student_div">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="button_space">
+                    <div class="retour_equipe">
+                        <a href="{{ url_for('home.team_prof') }}" class="back-link" > <- retour aux équipes</a> 
+                    </div>
+                    <div class="terminer_equipe">
+                        <input onclick="submit()" placeholder="Terminer" class="finished-btn" id="send_button" style="border-radius: 10px;">
+                    </div>
+                </div>    
+
+            </div>
+
+    
+    </div>
+
+
+</div>
+
+
+{% endblock %}

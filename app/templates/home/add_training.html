@@ -1,0 +1,170 @@
+{% extends 'base_prof.html' %}
+
+{% block content %}
+<script defer type="text/javascript" src="{{url_for('static', filename='js/search_student-training.js')}}"></script>
+<div class="container_add">
+    <h1 style="color: #ffe9a2 ;margin-left: 2%;font-size:230%;margin-top: 3%;">Création d'un entrainement:</h1>
+
+    
+    <div class="container_rose" id="creation-entrainement">
+        <div class="container_1">
+        <h1 style="padding: 1vh;color: #fdfdfd;">sets</h1>
+        
+            <div class="input-container">
+              <input id="sets" class="todo-input" placeholder="Entrez">
+            </div>
+            <div class="filters">
+              <div class="delete-all">Effacer tout</div>
+            </div>
+            <div class="todos-container">
+              <ul class="todos"></ul>
+            </div>
+          
+        </div>
+        <div class="container_1">
+        <h1 style="padding: 1vh;color: #fdfdfd;">sauts</h1>
+        <div class="input-container">
+            <input id="sauts" class="todo-input" placeholder="Entrez">
+          </div>
+          <div class="filters">
+            <div class="delete-all">Effacer tout</div>
+          </div>
+          <div class="todos-container">
+            <ul class="todos"></ul>
+
+          </div>
+        
+        </div>
+        <div class="container_1">
+        <h1 style="padding: 1vh;color: #fdfdfd;">pirouettes</h1>
+        <div class="input-container">
+            <input id="pirouettes" class="todo-input" placeholder="Entrez">
+          </div>
+          <div class="filters">
+            <div class="delete-all">Effacer tout</div>
+          </div>
+          <div class="todos-container">
+            <ul class="todos"></ul>
+
+          </div>
+        </div>
+        <div class="container_1">
+        <h1 style="padding: 1vh;color: #fdfdfd;font-size: larger;margin-bottom: 6px;">moitié de prog.</h1>
+        <div class="input-container">
+            <input id="moitie_de_programme" class="todo-input" placeholder="Entrez">
+          </div>
+          <div class="filters">
+            <div class="delete-all">Effacer tout</div>
+          </div>
+          <div class="todos-container">
+            <ul class="todos"></ul>
+
+          </div>
+        </div>
+        <div class="container_2">
+        <div class="container_3">
+            <h1 style="padding: 1vh;color: #fdfdfd;">programme</h1>
+
+            <select class="dropdown_menu" name="programmes" id="programmes">
+                <option value=""> choisir:</option>
+                <option value="long">long</option>
+                <option value="court">court</option>
+ 
+                
+            </select>
+            <div class="todos-container">
+                <ul class="todos"></ul>
+            </div>
+        </div>
+        
+        <div class="container_3">
+            <h1 style="padding: 1vh;color: #fdfdfd;font-size:medium ;">StSq et ChSq</h1>
+            <div class="checkbox-stsq">
+                <input type="checkbox" id="StSq" name="StSq" value="StSqL">
+                <label for="StSq">StSq du long</label>
+            </div>
+            <div class="checkbox-stsq">
+                <input type="checkbox" id="ChSq" name="ChSq" value="ChSqL">
+                <label for="ChSq">ChSq du long</label>
+            </div>
+            <div class="checkbox-stsq">
+                <input type="checkbox" id="ChSq" name="ChSq" value="ChSqC">
+                <label for="ChSq">StSq du court</label>
+            </div>
+            <div class="checkbox-stsq">
+                <input type="checkbox" id="ChSq" name="ChSq" value="ChSqC">
+                <label for="ChSq">ChSq du court</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container_prof hide" id="selection-team">
+  <div class="find_equipe_big">
+      <h1 style="color: #fdfdfd;margin-left: 5%;font-size:230%;margin-top: 3%; margin-bottom:2% ;">Choisissez une ou plusieures <span style="color: #d4ddfc;">équipes</span>:</h1>
+      
+      <div class="search-input_big">
+          <input type="search" placeholder="chercher" id="search-team" data-search-big>
+      </div>
+      <div class="container_team_cards_big" style="margin-top: 2%;">
+          {% for team in teams %}
+          <div class="teamCard_big2" teamid={{team.id_teams}} style="height: 70%;">
+              <h2>{{team.name}}</h2>
+          </div>
+          {% endfor %}
+      </div>
+   
+      
+  </div>
+
+
+</div>
+
+<div class="container_prof hide" id="selection-eleve">
+  <div class="find_equipe_big">
+      <h1 style="color: #fdfdfd;margin-left: 5%;font-size:230%;margin-top: 3%; margin-bottom:2% ;">Choisissez un ou plusieurs <span style="color: #d4ddfc;">élèves</span>:</h1>
+      
+      <div class="search-input_big">
+          <input type="search" placeholder="chercher" id="search-student" data-search-big>
+      </div>
+      <div class="container_student_cards" style="margin-top: 2%;">
+           {% set seen_names = {} %}
+            {% for eleve in eleves %}
+                {% set full_name = eleve.first_name ~ ' ' ~ eleve.last_name %}
+                {% if full_name not in seen_names %}
+                    <div class="studentCard" studentid={{eleve.id_users}}>
+                        <h2>{{eleve.first_name}}</h2>
+                        <h2 style="margin-left: 1%">{{eleve.last_name}}</h2>
+                    </div>
+                    {% set _ = seen_names.update({full_name: true}) %}
+                {% endif %}
+            {% endfor %}
+      </div>
+   
+      
+  </div>
+
+
+</div>
+
+
+
+
+<div class="under_portion">
+    <div class="change-page-button" id="send-selection-team-page">
+        <h1 style="font-size: medium;"> envoyer à une équipe </h1>
+    </div>
+    <div class="change-page-button" id="send-selection-eleve-page">
+        <h1 style="font-size: medium;"> envoyer à un élève </h1>
+    </div>
+    <div class="change-page-button" id="send-creation-entrainement-page">
+        <h1 style="font-size: medium;"> création entrainement</h1>
+    </div>
+    <div class="validation-button" id="send-to-database">
+        <h1 style="font-size: medium;"> valider</h1>
+</div>
+</div>
+
+<script defer type="text/javascript" src="{{url_for('static', filename='js/todo_list_training.js')}}"></script>
+<script defer type="text/javascript" src="{{url_for('static', filename='js/search_team-page.js')}}"></script>
+{% endblock %}

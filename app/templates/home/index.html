@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div>
+  <div class="padding_date" >
+    <script >
+  
+    var current_date = new Date();
+    var day_count = current_date.getDay();
+    var day = current_date.getDate();
+    var month = current_date.getMonth();
+  
+    const day_week = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
+    const month_year = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout","Septembre", "Octobre", "Novembre", "Décembre"];
+  
+    var date = day_week[day_count] + " " + day + " " + month_year[month] ;
+    document.write(date);
+    </script>
+  </div>
+  <div class="container_index">
+    <div class="texte_index_container">
+      <h1>Hi <span style="color: #FFD372;">{{g.user.first_name}}!</span></h1>
+      
+      <h2>Voici <span style="color: #FFD372;">l'entrainement d'aujourd'hui :</span></h2>
+    </div>
+    <div class="container_rose">
+      <div class="container_1">
+        <h1 style="padding: 1vh;color: #FBBECA;">sets de sauts</h1>
+        {% for set in sets %}
+            <div class="todo">
+                <h2>{{set.name}}</h2>
+            </div>
+            {% endfor %}
+      </div>
+      <div class="container_1">
+        <h1 style="padding: 1vh;color: #FBBECA;">sauts</h1>
+        {% for saut in sauts %}
+            <div class="todo">
+                <h2>{{saut.name}}</h2>
+            </div>
+            {% endfor %}
+      </div>
+      <div class="container_1">
+        <h1 style="padding: 1vh;color: #FBBECA;">pirouettes</h1>
+        {% for spin in spins %}
+            <div class="todo">
+                <h2>{{spin.name}}</h2>
+            </div>
+            {% endfor %}
+      </div>
+      <div class="container_1">
+        <h1 style="padding: 1vh;color: #FBBECA;">moitiés de prog.</h1>
+        {% for moitie in moities %}
+            <div class="todo">
+                <h2>{{moitie.name}}</h2>
+            </div>
+            {% endfor %}
+      </div>
+      <div class="container_2">
+        <div class="container_3">
+        <h1 style="padding: 1vh;color: #FBBECA;">programmes</h1>
+        {% for prog in progs %}
+            <div class="todo">
+                <h2>{{prog.name}}</h2>
+            </div>
+            {% endfor %}
+          </div>
+        <div class="container_3">
+        <h1 style="padding: 1vh;color: #FBBECA;">séquences</h1>
+        {% for sequence in sequences %}
+            <div class="todo">
+                <h2>{{sequence.name}}</h2>
+            </div>
+            {% endfor %}
+          </div>
+      </div>
+    </div>
+    
+    <div class="texte_index_container" style="position: absolute;top: 65vh;">
+    <h2>comment <span style="color: #FFD372;">s'est passé </span>l'entrainement ?:</h2></div>
+    
+    <div style="display: flex;flex-direction: row;align-items: center;justify-content: center;margin-top:56vh;" >
+      <i class="Object" id="1">&#128546;</i>
+      <i class="Object" id="2">&#128577;</i>
+      <i class="Object" id="3">&#128528;</i>
+      <i class="Object" id="4">&#128578;</i>
+      <i class="Object" id="5">&#128513;</i> 
+    </div>
+  </div>
+</div>
+
+<script defer type="text/javascript" src="{{url_for('static', filename='js/happiness.js')}}"></script>
+<script defer type="text/javascript" src="{{url_for('static', filename='js/index_todo.js')}}"></script>
+{% endblock %}
